@@ -2,14 +2,12 @@
 
 
 
-Images used in this program are used with permission under the LGPL license.
+####Images used in this program are used with permission under the LGPL license.####
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 This copyright and license notice covers the images in this directory.
 Note the license notice contains an add-on.
-************************************************************************
 
-TITLE:	NUVOLA ICON THEME for KDE 3.x
+**TITLE:	NUVOLA ICON THEME for KDE 3.x**
 AUTHOR:	David Vignoni | ICON KING
 SITE:	http://www.icon-king.com
 MAILING LIST: http://mail.icon-king.com/mailman/listinfo/nuvola_icon-king.com
@@ -28,7 +26,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library (see the the license.txt file); 
 if not, write to the 
 Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#######**** NOTE THIS ADD-ON ****#######
+#####NOTE THIS ADD-ON#####
 The GNU Lesser General Public License or LGPL is written for software libraries
 in the first place. The LGPL has to be considered valid for this artwork
 library too.
@@ -36,7 +34,7 @@ Nuvola icon theme for KDE 3.x is a special kind of software library, it is an
 artwork library, it's elements can be used in a Graphical User Interface, or
 GUI.
 Source code, for this library means:
- - raster png image* .
+' - raster png image* .'
 The LGPL in some sections obliges you to make the files carry
 notices. With images this is in some cases impossible or hardly usefull.
 With this library a notice is placed at a prominent place in the directory
