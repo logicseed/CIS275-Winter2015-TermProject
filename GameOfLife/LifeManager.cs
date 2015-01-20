@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameOfLife
 {
-    class LifeManager
+    partial class LifeManager
     {
         // Fields
 
@@ -18,6 +18,7 @@ namespace GameOfLife
         // Two potential end-game states.
         private bool stabilization;
         private bool extinction;
+        private bool gameRunning;
 
         // A count of the current generation.
         private int currentGeneration;
@@ -62,6 +63,14 @@ namespace GameOfLife
             get
             {
                 return stabilization;
+            }
+        }
+
+        public bool GameRunning
+        {
+            get
+            {
+                return gameRunning;
             }
         }
 
@@ -111,11 +120,12 @@ namespace GameOfLife
                 {
                     if (SpawnLife(chance))
                     {
-                        this.currentMatrix[i, j] = Rand.Next(1, 4);
+                        this.currentMatrix[i, j] = Rand.Next(1, 16);
                     }
                 }
             }
             this.currentGeneration = 1;
+            this.gameRunning = true;
         }
 
         public void NextGeneration()
@@ -143,8 +153,8 @@ namespace GameOfLife
                     // Birth
                     else if (count == 3 && !HasLife(i, j))
                     {
-                        nextMatrix[i, j] = 1;
-                        // nextMatrix[i, j] = Rand.Next(1, 4);
+                        //nextMatrix[i, j] = 1;
+                        nextMatrix[i, j] = Rand.Next(1, 16);
                     }
                 }
             }
@@ -161,6 +171,11 @@ namespace GameOfLife
                 {
                     stabilization = CompareMatrices(previousMatrix, nextMatrix);
                 }
+                if (stabilization) gameRunning = false;
+            }
+            else
+            {
+                this.gameRunning = false;
             }
 
             previousMatrix = currentMatrix;
