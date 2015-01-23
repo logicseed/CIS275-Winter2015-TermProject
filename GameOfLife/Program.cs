@@ -171,23 +171,47 @@ namespace GameOfLife
             }
         }
 
+        private Size CalculateGridSpace()
+        {
+            Size gridSpace = new Size(
+                this.Width - (elementMargin.Width * 10),
+                this.Height -
+                    (int)Math.Ceiling(Math.Max(
+                        totalLogoSize.Height,
+                        totalHelpPromptSize.Height
+                    )) -
+                    (int)Math.Ceiling(Math.Max(
+                        totalGenerationCountSize.Height,
+                        totalSettingsSize.Height
+                    ))
+            );
+
+            return gridSpace;
+        }
+
         private int CalculateMaxRows()
         {
             //private SizeF totalLogoSize;
         //private SizeF totalHelpPromptSize;
         //private SizeF totalGenerationCountSize;
         //private SizeF totalSettingsSize;
-            return 20;
+            int maxRows = (CalculateGridSpace().Height / (cellSize + 1)) + 1;
+            return maxRows;
         }
 
         private int CalculateMaxColumns()
         {
-            return 20;
+            int maxColumns = (CalculateGridSpace().Width / (cellSize + 1)) + 1;
+            return maxColumns;
         }
 
         private int CalculateMaxCellSize()
         {
-            return 20;
+            int maxCellSize = Math.Min(
+                (CalculateGridSpace().Height - rows) / rows + 2,
+                (CalculateGridSpace().Width - columns) / columns + 2
+                );
+            return maxCellSize;
         }
     }
 }
