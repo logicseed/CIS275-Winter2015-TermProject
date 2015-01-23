@@ -68,6 +68,14 @@
     <Compile Include="LifeManager.Test.cs">
       <DependentUpon>LifeManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.Graphics.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>Program.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.States.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>Program.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.Styles.cs">
       <SubType>Form</SubType>
       <DependentUpon>Program.cs</DependentUpon>
@@ -126,7 +134,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\splash.png" />
+    <None Include="Resources\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

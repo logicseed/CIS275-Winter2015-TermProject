@@ -61,11 +61,111 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CELL SIZE: .
+        /// </summary>
+        internal static string CellSizeTitle {
+            get {
+                return ResourceManager.GetString("CellSizeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COLUMNS: .
+        /// </summary>
+        internal static string ColumnCountTitle {
+            get {
+                return ResourceManager.GetString("ColumnCountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS ANY OTHER KEY TO CONTINUE.
+        /// </summary>
+        internal static string ExitCancel {
+            get {
+                return ResourceManager.GetString("ExitCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS $ TO EXIT.
+        /// </summary>
+        internal static string ExitConfirmation {
+            get {
+                return ResourceManager.GetString("ExitConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NONE.
+        /// </summary>
+        internal static string GenerationEmpty {
+            get {
+                return ResourceManager.GetString("GenerationEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GENERATION: .
+        /// </summary>
+        internal static string GenerationTitle {
+            get {
+                return ResourceManager.GetString("GenerationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS ? FOR HELP.
+        /// </summary>
+        internal static string HelpPrompt {
+            get {
+                return ResourceManager.GetString("HelpPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LIFE CHANCE: .
+        /// </summary>
+        internal static string LifeChanceTitle {
+            get {
+                return ResourceManager.GetString("LifeChanceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap splash {
+        internal static System.Drawing.Bitmap Logo {
             get {
-                object obj = ResourceManager.GetObject("splash", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to max:.
+        /// </summary>
+        internal static string Max {
+            get {
+                return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ROWS: .
+        /// </summary>
+        internal static string RowCountTitle {
+            get {
+                return ResourceManager.GetString("RowCountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Splash {
+            get {
+                object obj = ResourceManager.GetObject("Splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

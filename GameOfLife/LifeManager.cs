@@ -250,7 +250,7 @@ namespace GameOfLife
 
         private bool SpawnLife(int chance)
         {
-            if (Rand.Next(1, 100) >= chance) return true;
+            if (Rand.Next(1, 100) <= chance) return true;
             return false;
         }
     }

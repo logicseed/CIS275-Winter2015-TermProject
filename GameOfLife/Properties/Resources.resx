@@ -117,11 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SplashScreen" xml:space="preserve">
     <value>PRESS ANY KEY TO CONTINUE</value>
+  </data>
+  <data name="ExitCancel" xml:space="preserve">
+    <value>PRESS ANY OTHER KEY TO CONTINUE</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>PRESS $ TO EXIT</value>
+  </data>
+  <data name="HelpPrompt" xml:space="preserve">
+    <value>PRESS ? FOR HELP</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\splash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CellSizeTitle" xml:space="preserve">
+    <value>CELL SIZE: </value>
+  </data>
+  <data name="ColumnCountTitle" xml:space="preserve">
+    <value>COLUMNS: </value>
+  </data>
+  <data name="GenerationEmpty" xml:space="preserve">
+    <value>NONE</value>
+  </data>
+  <data name="GenerationTitle" xml:space="preserve">
+    <value>GENERATION: </value>
+  </data>
+  <data name="LifeChanceTitle" xml:space="preserve">
+    <value>LIFE CHANCE: </value>
+  </data>
+  <data name="Max" xml:space="preserve">
+    <value>max:</value>
+  </data>
+  <data name="RowCountTitle" xml:space="preserve">
+    <value>ROWS: </value>
   </data>
 </root>

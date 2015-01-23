@@ -1,10 +1,26 @@
-﻿using System.Drawing;
+﻿
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GameOfLife
 {
     partial class Program
     {
+
+        
+
+
         /// <summary>
         /// This is an array to store the colors for the various types of
         /// life. Although the names may sound similar to colors that are
@@ -33,6 +49,8 @@ namespace GameOfLife
         };
 
         // Create solid brushes for each of the colors.
+        // This could be performed in a for loop if we didn't
+        // want the variable to be static.
         static SolidBrush[] lifeBrush = new SolidBrush[]
         {
             new SolidBrush(lifeColor[0]),
@@ -66,22 +84,43 @@ namespace GameOfLife
             Color.FromArgb(206,215,219), //  1 - Background
             Color.FromArgb(143,163,173), //  2 - Darker Background
             Color.FromArgb(175,189,196), //  3 - Cell Border
+            Color.FromArgb(150, 0, 0, 0)  //  4 - Black Shade
         };
 
         static Pen cellPen = new Pen(uiColor[3], 1);
+        static Pen darkCellPen = new Pen(uiColor[2], 1);
         
+        static SolidBrush blackBrush = new SolidBrush(uiColor[0]);
+        static SolidBrush backgroundBrush = new SolidBrush(uiColor[1]);
+        static SolidBrush darkBackgroundBrush = new SolidBrush(uiColor[2]);
+        static SolidBrush shadeBrush = new SolidBrush(uiColor[4]);
 
-        static SolidBrush[] uiBrush = new SolidBrush[]
-        {
-            new SolidBrush(uiColor[0]),
-            new SolidBrush(uiColor[1]),
-            new SolidBrush(uiColor[2]),
-            new SolidBrush(uiColor[3]),
-        };
+        private PrivateFontCollection customFonts;
+        private Font promptFont;
+        private Font subPromptFont;
+        private Font generationTitleFont;
+        private Font generationValueFont;
+        private Font gridSettingTitleFont;
+        private Font gridSettingValueFont;
 
-        private void InitializeColors()
+
+        private void InitializeStyles()
         {
             cellPen.LineJoin = LineJoin.Bevel;
+
+
+            customFonts = new PrivateFontCollection();
+
+            // Load custom fonts.
+            customFonts.AddFontFile("GameOfLife-Regular.ttf");
+            customFonts.AddFontFile("GameOfLife-Bold.ttf");
+
+            promptFont = new Font(customFonts.Families[0], 16, FontStyle.Bold);
+            subPromptFont = new Font(customFonts.Families[0], 12, FontStyle.Regular);
+            generationTitleFont = new Font(customFonts.Families[0], 20, FontStyle.Bold);
+            generationValueFont = new Font(customFonts.Families[0], 20, FontStyle.Regular);
+            gridSettingTitleFont = new Font(customFonts.Families[0], 14, FontStyle.Bold);
+            gridSettingValueFont = new Font(customFonts.Families[0], 14, FontStyle.Regular);
         }
     }
 }
