@@ -191,25 +191,21 @@ namespace GameOfLife
 
         private int CalculateMaxRows()
         {
-            //private SizeF totalLogoSize;
-        //private SizeF totalHelpPromptSize;
-        //private SizeF totalGenerationCountSize;
-        //private SizeF totalSettingsSize;
-            int maxRows = (CalculateGridSpace().Height / (cellSize + 1)) + 1;
+            int maxRows = (CalculateGridSpace().Height - 1) / (cellSize + 1);
             return maxRows;
         }
 
         private int CalculateMaxColumns()
         {
-            int maxColumns = (CalculateGridSpace().Width / (cellSize + 1)) + 1;
+            int maxColumns = (CalculateGridSpace().Width - 1) / (cellSize + 1);
             return maxColumns;
         }
 
         private int CalculateMaxCellSize()
         {
             int maxCellSize = Math.Min(
-                (CalculateGridSpace().Height - rows) / rows + 2,
-                (CalculateGridSpace().Width - columns) / columns + 2
+                ((CalculateGridSpace().Height - 1) / rows) - 1,
+                ((CalculateGridSpace().Width - 1) / columns) - 1
                 );
             return maxCellSize;
         }
