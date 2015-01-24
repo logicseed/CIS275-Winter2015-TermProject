@@ -1,4 +1,17 @@
-﻿
+﻿/*
+ * TODO
+ * 
+ * Cleanup usings
+ * Refactor
+ * Check for efficiency changes
+ * 
+ * IF TIME
+ * 
+ * make fonts embedded resources
+ * 
+ */
+
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

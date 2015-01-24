@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * TODO
+ * 
+ * cleanup usings
+ * integrate graphics states
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * TODO
+ * 
+ * complete rewrite using new knowledge
+ * comments
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

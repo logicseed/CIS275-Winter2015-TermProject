@@ -48,10 +48,10 @@ namespace GameOfLife
 
         
 
-        // Matrix fields
-        private int rows = 1;
-        private int columns = 1;
-        
+        // Grid fields
+        private int gridRows = 1;
+        private int gridColumns = 1;
+        private byte gridCellSize = 20;
         private byte lifeChance = 50;
 
 
@@ -70,7 +70,7 @@ namespace GameOfLife
 
         public Program()
         {
-            InitializeComponent();
+            InitializeComponent(); // rename after integrating Designer code : InitializeProgram();
             Cursor.Hide();
             InitializeStyles();
             InitializeStates();
@@ -147,7 +147,7 @@ namespace GameOfLife
 
         private void BeginGame()
         {
-            lifeManager.CreateNewMatrix(rows, columns);
+            lifeManager.CreateNewMatrix(gridRows, gridColumns);
             lifeManager.RandomizeMatrix(lifeChance);
             State[GameRunning] = lifeManager.GameRunning;
         }
@@ -160,13 +160,13 @@ namespace GameOfLife
                 State[GameRunning] = false;
             }
 
-                if (Change == Increase && rows < CalculateMaxRows())
+                if (Change == Increase && gridRows < CalculateMaxRows())
                 {
-                    rows++;
+                    gridRows++;
                 }
-                else if (Change == Decrease && rows > 1)
+                else if (Change == Decrease && gridRows > 1)
                 {
-                    rows--;
+                    gridRows--;
                 }
 
             InvalidateGrid();
@@ -179,13 +179,13 @@ namespace GameOfLife
                 lifeManager.ResetGame();
                 State[GameRunning] = false;
             }
-            if (Change == Increase && columns < CalculateMaxColumns())
+            if (Change == Increase && gridColumns < CalculateMaxColumns())
             {
-                columns++;
+                gridColumns++;
             }
-            else if (Change == Decrease && columns > 1)
+            else if (Change == Decrease && gridColumns > 1)
             {
-                columns--;
+                gridColumns--;
             }
             InvalidateGrid();
         }
@@ -197,13 +197,13 @@ namespace GameOfLife
                 lifeManager.ResetGame();
                 State[GameRunning] = false;
             }
-            if (Change == Increase && cellSize < CalculateMaxCellSize())
+            if (Change == Increase && gridCellSize < CalculateMaxCellSize())
             {
-                cellSize++;
+                gridCellSize++;
             }
-            else if (Change == Decrease && cellSize > 5)
+            else if (Change == Decrease && gridCellSize > 5)
             {
-                cellSize--;
+                gridCellSize--;
             }
             InvalidateGrid();
         }
@@ -240,29 +240,29 @@ namespace GameOfLife
 
         private int CalculateMaxRows()
         {
-            int maxRows = (CalculateGridSpace().Height - 1) / (cellSize + 1);
+            int maxRows = (CalculateGridSpace().Height - 1) / (gridCellSize + 1);
             return maxRows;
         }
 
         private int CalculateMaxColumns()
         {
-            int maxColumns = (CalculateGridSpace().Width - 1) / (cellSize + 1);
+            int maxColumns = (CalculateGridSpace().Width - 1) / (gridCellSize + 1);
             return maxColumns;
         }
 
         private int CalculateMaxCellSize()
         {
             int maxCellSize = Math.Min(
-                ((CalculateGridSpace().Height - 1) / rows) - 1,
-                ((CalculateGridSpace().Width - 1) / columns) - 1
+                ((CalculateGridSpace().Height - 1) / gridRows) - 1,
+                ((CalculateGridSpace().Width - 1) / gridColumns) - 1
                 );
             return maxCellSize;
         }
 
         private void SetDefaultGridSize()
         {
-            rows = CalculateMaxRows();
-            columns = CalculateMaxColumns();
+            gridRows = CalculateMaxRows();
+            gridColumns = CalculateMaxColumns();
         }
     }
 }
