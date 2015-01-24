@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.AutoStepTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // AutoStepTimer
+            // 
+            this.AutoStepTimer.Interval = 50;
+            this.AutoStepTimer.Tick += new System.EventHandler(this.NextStep);
             // 
             // Program
             // 
@@ -47,6 +54,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer AutoStepTimer;
 
 
     }

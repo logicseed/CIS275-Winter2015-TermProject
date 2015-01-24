@@ -253,5 +253,10 @@ namespace GameOfLife
             if (Rand.Next(1, 100) <= chance) return true;
             return false;
         }
+
+        internal void ResetGame()
+        {
+            CreateNewMatrix(1, 1);
+        }
     }
 }

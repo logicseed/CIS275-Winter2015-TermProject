@@ -16,6 +16,7 @@
  * 
  * TODO
  * 
+ * Move screen element size calculations to their own functions, do during initialization
  * Convert ints to bytes in LifeManager
  * Remove Program.Designer.cs and integrate into other files (primarily Program.cs)
  * Make comments everywhere.
@@ -48,12 +49,14 @@ namespace GameOfLife
         
 
         // Matrix fields
-        private int rows = 20;
-        private int columns = 30;
+        private int rows = 1;
+        private int columns = 1;
         
         private byte lifeChance = 50;
 
-        
+
+        private bool Increase = true;
+        private bool Decrease = false;
 
         private LifeManager lifeManager = new LifeManager();
 
@@ -70,38 +73,47 @@ namespace GameOfLife
             InitializeComponent();
             Cursor.Hide();
             InitializeStyles();
+            InitializeStates();
+            
             //this.SetStyle(ControlStyles.DoubleBuffer, true);
 
 
             
 
-            this.BackColor = uiColor[1];
+            //this.BackColor = uiColor[1];
 
         }
 
-        private void ConfirmExit()
-        {
-            isConfirmingExit = true;
-        }
 
         private void CancelExit()
         {
-            isConfirmingExit = false;
+            State[ShowConfirmExit] = false;
+        }
+
+        private void EndGame()
+        {
+            State[GameRunning] = false;
         }
 
         private void PauseAutoStep()
         {
-
+            AutoStepTimer.Enabled = false;
+            State[AutoStepping] = false;
         }
 
         private void BeginAutoStep()
         {
-
+            if (!State[GameRunning])
+            {
+                BeginGame();
+            }
+            AutoStepTimer.Enabled = true;
+            State[AutoStepping] = true;
         }
 
         private void CloseSplashScreen()
         {
-            hasShownSplash = true;
+            State[ShowSplash] = false;
         }
 
         private void OpenHelpScreen()
@@ -109,19 +121,43 @@ namespace GameOfLife
 
         }
 
+        private void NextStep(object sender, EventArgs e)
+        {
+            NextStep();
+        }
+
         private void NextStep()
         {
-            lifeManager.NextGeneration();
+            State[GameRunning] = lifeManager.GameRunning;
+            if (State[GameRunning])
+            {
+                lifeManager.NextGeneration();
+                State[GameRunning] = lifeManager.GameRunning;
+            }
+            if (State[AutoStepping] && State[GameRunning])
+            {
+                this.Invalidate();
+            }
+            else
+            {
+                PauseAutoStep();
+            }
         }
 
         private void BeginGame()
         {
             lifeManager.CreateNewMatrix(rows, columns);
             lifeManager.RandomizeMatrix(lifeChance);
+            State[GameRunning] = lifeManager.GameRunning;
         }
 
         private void ChangeRows(bool Change)
         {
+            if (!State[GameRunning] && lifeManager.GameRunning)
+            {
+                lifeManager.ResetGame();
+                State[GameRunning] = false;
+            }
             if(Change == Increase)
             {
                 rows++;
@@ -135,6 +171,11 @@ namespace GameOfLife
 
         private void ChangeColumns(bool Change)
         {
+            if (!State[GameRunning] && lifeManager.GameRunning)
+            {
+                lifeManager.ResetGame();
+                State[GameRunning] = false;
+            }
             if (Change == Increase)
             {
                 columns++;
@@ -148,6 +189,11 @@ namespace GameOfLife
 
         private void ChangeCellSize(bool Change)
         {
+            if (!State[GameRunning] && lifeManager.GameRunning)
+            {
+                lifeManager.ResetGame();
+                State[GameRunning] = false;
+            }
             if (Change == Increase)
             {
                 cellSize++;
@@ -174,7 +220,7 @@ namespace GameOfLife
         private Size CalculateGridSpace()
         {
             Size gridSpace = new Size(
-                this.Width - (elementMargin.Width * 10),
+                this.Width - (elementMargin.Width * 2),
                 this.Height -
                     (int)Math.Ceiling(Math.Max(
                         totalLogoSize.Height,
@@ -183,7 +229,7 @@ namespace GameOfLife
                     (int)Math.Ceiling(Math.Max(
                         totalGenerationCountSize.Height,
                         totalSettingsSize.Height
-                    ))
+                    )) + (elementMargin.Width * 6)
             );
 
             return gridSpace;
@@ -208,6 +254,12 @@ namespace GameOfLife
                 ((CalculateGridSpace().Width - 1) / columns) - 1
                 );
             return maxCellSize;
+        }
+
+        private void SetDefaultGridSize()
+        {
+            rows = CalculateMaxRows();
+            columns = CalculateMaxColumns();
         }
     }
 }
