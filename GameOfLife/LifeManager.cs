@@ -257,6 +257,7 @@ namespace GameOfLife
         internal void ResetGame()
         {
             CreateNewMatrix(1, 1);
+            gameRunning = false;
         }
     }
 }

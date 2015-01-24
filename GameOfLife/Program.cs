@@ -93,6 +93,7 @@ namespace GameOfLife
         private void EndGame()
         {
             State[GameRunning] = false;
+            lifeManager.ResetGame();
         }
 
         private void PauseAutoStep()
@@ -158,14 +159,16 @@ namespace GameOfLife
                 lifeManager.ResetGame();
                 State[GameRunning] = false;
             }
-            if(Change == Increase)
-            {
-                rows++;
-            }
-            else
-            {
-                rows--;
-            }
+
+                if (Change == Increase && rows < CalculateMaxRows())
+                {
+                    rows++;
+                }
+                else if (Change == Decrease && rows > 1)
+                {
+                    rows--;
+                }
+
             InvalidateGrid();
         }
 
@@ -176,11 +179,11 @@ namespace GameOfLife
                 lifeManager.ResetGame();
                 State[GameRunning] = false;
             }
-            if (Change == Increase)
+            if (Change == Increase && columns < CalculateMaxColumns())
             {
                 columns++;
             }
-            else
+            else if (Change == Decrease && columns > 1)
             {
                 columns--;
             }
@@ -194,11 +197,11 @@ namespace GameOfLife
                 lifeManager.ResetGame();
                 State[GameRunning] = false;
             }
-            if (Change == Increase)
+            if (Change == Increase && cellSize < CalculateMaxCellSize())
             {
                 cellSize++;
             }
-            else
+            else if (Change == Decrease && cellSize > 5)
             {
                 cellSize--;
             }
@@ -207,11 +210,11 @@ namespace GameOfLife
 
         private void ChangeLifeChance(bool Change)
         {
-            if (Change == Increase)
+            if (Change == Increase && lifeChance < 100)
             {
                 lifeChance++;
             }
-            else
+            else if (Change == Decrease && lifeChance > 1)
             {
                 lifeChance--;
             }
