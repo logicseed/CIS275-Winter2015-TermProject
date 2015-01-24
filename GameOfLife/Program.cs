@@ -51,7 +51,7 @@ namespace GameOfLife
         // Grid fields
         private int gridRows = 1;
         private int gridColumns = 1;
-        private byte gridCellSize = 20;
+        private byte gridCellSize = 50;
         private byte lifeChance = 50;
 
 
@@ -263,6 +263,15 @@ namespace GameOfLife
         {
             gridRows = CalculateMaxRows();
             gridColumns = CalculateMaxColumns();
+        }
+
+        private void ConfirmExit()
+        {
+            State[ShowConfirmExit] = true;
+            if(State[AutoStepping])
+            {
+                PauseAutoStep();
+            }
         }
     }
 }
