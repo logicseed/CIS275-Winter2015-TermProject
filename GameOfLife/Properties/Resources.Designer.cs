@@ -115,11 +115,155 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to * - Start or Stop Autostepping.
+        /// </summary>
+        internal static string HelpAutoStep {
+            get {
+                return ResourceManager.GetString("HelpAutoStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BEFORE GAME.
+        /// </summary>
+        internal static string HelpBeforeGame {
+            get {
+                return ResourceManager.GetString("HelpBeforeGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^+] - Decrease Cell Size.
+        /// </summary>
+        internal static string HelpDecreaseCellSize {
+            get {
+                return ResourceManager.GetString("HelpDecreaseCellSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; - Decrease Columns.
+        /// </summary>
+        internal static string HelpDecreaseColumns {
+            get {
+                return ResourceManager.GetString("HelpDecreaseColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /+] - Decrease Life Chance.
+        /// </summary>
+        internal static string HelpDecreaseLifeChance {
+            get {
+                return ResourceManager.GetString("HelpDecreaseLifeChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ] - Decrease Rows.
+        /// </summary>
+        internal static string HelpDecreaseRows {
+            get {
+                return ResourceManager.GetString("HelpDecreaseRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # - End Game.
+        /// </summary>
+        internal static string HelpEndGame {
+            get {
+                return ResourceManager.GetString("HelpEndGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $ - Exit Game.
+        /// </summary>
+        internal static string HelpExitGame {
+            get {
+                return ResourceManager.GetString("HelpExitGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ^+[ - Increase Cell Size.
+        /// </summary>
+        internal static string HelpIncreaseCellSize {
+            get {
+                return ResourceManager.GetString("HelpIncreaseCellSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt; - Increase Columns.
+        /// </summary>
+        internal static string HelpIncreaseColumns {
+            get {
+                return ResourceManager.GetString("HelpIncreaseColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /+[ - Increase Life Chance.
+        /// </summary>
+        internal static string HelpIncreaseLifeChance {
+            get {
+                return ResourceManager.GetString("HelpIncreaseLifeChance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [ - Increase Rows.
+        /// </summary>
+        internal static string HelpIncreaseRows {
+            get {
+                return ResourceManager.GetString("HelpIncreaseRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MAIN CONTROLS.
+        /// </summary>
+        internal static string HelpMainControls {
+            get {
+                return ResourceManager.GetString("HelpMainControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _ - Step to Next Generation.
+        /// </summary>
+        internal static string HelpNextStep {
+            get {
+                return ResourceManager.GetString("HelpNextStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PRESS ? FOR HELP.
         /// </summary>
         internal static string HelpPrompt {
             get {
                 return ResourceManager.GetString("HelpPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp; - Show Credits.
+        /// </summary>
+        internal static string HelpShowCredits {
+            get {
+                return ResourceManager.GetString("HelpShowCredits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GAME OF LIFE HELP.
+        /// </summary>
+        internal static string HelpTitle {
+            get {
+                return ResourceManager.GetString("HelpTitle", resourceCulture);
             }
         }
         

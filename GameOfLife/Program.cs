@@ -119,13 +119,10 @@ namespace GameOfLife
 
         private void OpenHelpScreen()
         {
-
+            State[ShowHelp] = true;
         }
 
-        private void NextStep(object sender, EventArgs e)
-        {
-            NextStep();
-        }
+        
 
         private void NextStep()
         {
@@ -143,6 +140,15 @@ namespace GameOfLife
             {
                 PauseAutoStep();
             }
+            if (lifeManager.Stabilization || lifeManager.Extinction)
+            {
+                State[GameComplete] = true;
+            }
+        }
+
+        private void AutoStep(object sender, EventArgs e)
+        {
+            NextStep();
         }
 
         private void BeginGame()

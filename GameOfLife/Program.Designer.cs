@@ -35,7 +35,7 @@
             // AutoStepTimer
             // 
             this.AutoStepTimer.Interval = 50;
-            this.AutoStepTimer.Tick += new System.EventHandler(this.NextStep);
+            this.AutoStepTimer.Tick += new System.EventHandler(this.AutoStep);
             // 
             // Program
             // 

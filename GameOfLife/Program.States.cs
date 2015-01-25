@@ -40,6 +40,7 @@ namespace GameOfLife
         private static int ShowHelp = BitVector32.CreateMask(ShowConfirmExit);
         private static int ShowCredits = BitVector32.CreateMask(ShowHelp);
         private static int FirstDisplay = BitVector32.CreateMask(ShowCredits);
+        private static int GameComplete = BitVector32.CreateMask(FirstDisplay);
 
         private void InitializeStates()
         {

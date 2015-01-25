@@ -157,4 +157,52 @@
   <data name="RowCountTitle" xml:space="preserve">
     <value>ROWS: </value>
   </data>
+  <data name="HelpAutoStep" xml:space="preserve">
+    <value>* - Start or Stop Autostepping</value>
+  </data>
+  <data name="HelpBeforeGame" xml:space="preserve">
+    <value>BEFORE GAME</value>
+  </data>
+  <data name="HelpDecreaseCellSize" xml:space="preserve">
+    <value>^+] - Decrease Cell Size</value>
+  </data>
+  <data name="HelpDecreaseColumns" xml:space="preserve">
+    <value>&lt; - Decrease Columns</value>
+  </data>
+  <data name="HelpDecreaseLifeChance" xml:space="preserve">
+    <value>/+] - Decrease Life Chance</value>
+  </data>
+  <data name="HelpDecreaseRows" xml:space="preserve">
+    <value>] - Decrease Rows</value>
+  </data>
+  <data name="HelpEndGame" xml:space="preserve">
+    <value># - End Game</value>
+  </data>
+  <data name="HelpExitGame" xml:space="preserve">
+    <value>$ - Exit Game</value>
+  </data>
+  <data name="HelpIncreaseCellSize" xml:space="preserve">
+    <value>^+[ - Increase Cell Size</value>
+  </data>
+  <data name="HelpIncreaseColumns" xml:space="preserve">
+    <value>&gt; - Increase Columns</value>
+  </data>
+  <data name="HelpIncreaseLifeChance" xml:space="preserve">
+    <value>/+[ - Increase Life Chance</value>
+  </data>
+  <data name="HelpIncreaseRows" xml:space="preserve">
+    <value>[ - Increase Rows</value>
+  </data>
+  <data name="HelpMainControls" xml:space="preserve">
+    <value>MAIN CONTROLS</value>
+  </data>
+  <data name="HelpNextStep" xml:space="preserve">
+    <value>_ - Step to Next Generation</value>
+  </data>
+  <data name="HelpShowCredits" xml:space="preserve">
+    <value>&amp; - Show Credits</value>
+  </data>
+  <data name="HelpTitle" xml:space="preserve">
+    <value>GAME OF LIFE HELP</value>
+  </data>
 </root>
