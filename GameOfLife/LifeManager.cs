@@ -128,7 +128,7 @@ namespace GameOfLife
                 {
                     if (SpawnLife(chance))
                     {
-                        this.currentMatrix[i, j] = Rand.Next(1, 16);
+                        this.currentMatrix[i, j] = Random.Next(1, 16);
                     }
                 }
             }
@@ -162,7 +162,7 @@ namespace GameOfLife
                     else if (count == 3 && !HasLife(i, j))
                     {
                         //nextMatrix[i, j] = 1;
-                        nextMatrix[i, j] = Rand.Next(1, 16);
+                        nextMatrix[i, j] = Random.Next(1, 16);
                     }
                 }
             }
@@ -258,7 +258,7 @@ namespace GameOfLife
 
         private bool SpawnLife(int chance)
         {
-            if (Rand.Next(1, 100) <= chance) return true;
+            if (Random.Next(1, 100) <= chance) return true;
             return false;
         }
 

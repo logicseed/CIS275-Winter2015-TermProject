@@ -58,7 +58,7 @@ namespace GameOfLife
         private bool Increase = true;
         private bool Decrease = false;
 
-        private LifeManager lifeManager = new LifeManager();
+        private LifeManager Life = new LifeManager();
 
         
 
@@ -93,7 +93,7 @@ namespace GameOfLife
         private void EndGame()
         {
             State[GameRunning] = false;
-            lifeManager.ResetGame();
+            Life.ResetGame();
         }
 
         private void PauseAutoStep()
@@ -120,17 +120,21 @@ namespace GameOfLife
         private void OpenHelpScreen()
         {
             State[ShowHelp] = true;
+            if (State[AutoStepping])
+            {
+                PauseAutoStep();
+            }
         }
 
         
 
         private void NextStep()
         {
-            State[GameRunning] = lifeManager.GameRunning;
+            State[GameRunning] = Life.GameRunning;
             if (State[GameRunning])
             {
-                lifeManager.NextGeneration();
-                State[GameRunning] = lifeManager.GameRunning;
+                Life.NextGeneration();
+                State[GameRunning] = Life.GameRunning;
             }
             if (State[AutoStepping] && State[GameRunning])
             {
@@ -140,9 +144,11 @@ namespace GameOfLife
             {
                 PauseAutoStep();
             }
-            if (lifeManager.Stabilization || lifeManager.Extinction)
+            if (Life.Stabilization || Life.Extinction)
             {
                 State[GameComplete] = true;
+                State[ShowOutcome] = true;
+                this.Invalidate();
             }
         }
 
@@ -153,16 +159,16 @@ namespace GameOfLife
 
         private void BeginGame()
         {
-            lifeManager.CreateNewMatrix(gridRows, gridColumns);
-            lifeManager.RandomizeMatrix(lifeChance);
-            State[GameRunning] = lifeManager.GameRunning;
+            Life.CreateNewMatrix(gridRows, gridColumns);
+            Life.RandomizeMatrix(lifeChance);
+            State[GameRunning] = Life.GameRunning;
         }
 
         private void ChangeRows(bool Change)
         {
-            if (!State[GameRunning] && lifeManager.GameRunning)
+            if (!State[GameRunning] && Life.GameRunning)
             {
-                lifeManager.ResetGame();
+                Life.ResetGame();
                 State[GameRunning] = false;
             }
 
@@ -180,9 +186,9 @@ namespace GameOfLife
 
         private void ChangeColumns(bool Change)
         {
-            if (!State[GameRunning] && lifeManager.GameRunning)
+            if (!State[GameRunning] && Life.GameRunning)
             {
-                lifeManager.ResetGame();
+                Life.ResetGame();
                 State[GameRunning] = false;
             }
             if (Change == Increase && gridColumns < CalculateMaxColumns())
@@ -198,9 +204,9 @@ namespace GameOfLife
 
         private void ChangeCellSize(bool Change)
         {
-            if (!State[GameRunning] && lifeManager.GameRunning)
+            if (!State[GameRunning] && Life.GameRunning)
             {
-                lifeManager.ResetGame();
+                Life.ResetGame();
                 State[GameRunning] = false;
             }
             if (Change == Increase && gridCellSize < CalculateMaxCellSize())

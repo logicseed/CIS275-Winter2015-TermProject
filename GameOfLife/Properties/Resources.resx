@@ -157,6 +157,12 @@
   <data name="RowCountTitle" xml:space="preserve">
     <value>ROWS: </value>
   </data>
+  <data name="GameExtinction" xml:space="preserve">
+    <value>EXTINCTION!</value>
+  </data>
+  <data name="GameStabilization" xml:space="preserve">
+    <value>STABILIZATION!</value>
+  </data>
   <data name="HelpAutoStep" xml:space="preserve">
     <value>* - Start or Stop Autostepping</value>
   </data>
@@ -204,5 +210,11 @@
   </data>
   <data name="HelpTitle" xml:space="preserve">
     <value>GAME OF LIFE HELP</value>
+  </data>
+  <data name="PressAnyKey" xml:space="preserve">
+    <value>PRESS ANY KEY TO CONTINUE</value>
+  </data>
+  <data name="PressAnyOtherKey" xml:space="preserve">
+    <value>PRESS ANY OTHER KEY TO CONTINUE</value>
   </data>
 </root>

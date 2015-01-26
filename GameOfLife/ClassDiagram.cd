@@ -2,10 +2,67 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GameOfLife.Program" Collapsed="true">
     <Position X="1" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="GameOfLife.Program.PopupMessage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="GameOfLife.Program.Alignment" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="GameOfLife.Program.HorizontalAlignment" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="GameOfLife.Program.VerticalAlignment" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AQQAgICAICAAIEAAAADIwAICCAAEAAACSgAAASOSAMI=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>DSSg8IL+JO4NqkCsII3oxpE6WAeERgAoRhASREuTENA=</HashCode>
+      <FileName>Graphics.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GameOfLife.Screen">
+    <Position X="7" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AYQAggAcACAAgYAECAEAAgGACBAAAgAAQCAAAQAAQJA=</HashCode>
+      <FileName>Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOfLife.Style">
+    <Position X="10.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SSEAAAAEAhAAgYAAAAgAAFAABCBEAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Styles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOfLife.Setting">
+    <Position X="1" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="GameOfLife.ScreenState">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIAAAAQAAAAAAAAAAAAAAAAACAAAAAAAEA=</HashCode>
+      <FileName>States.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameOfLife.PopupState">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAMAAAAAAAAAAAAAAIAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>States.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

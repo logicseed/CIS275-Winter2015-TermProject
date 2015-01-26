@@ -97,6 +97,24 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXTINCTION!.
+        /// </summary>
+        internal static string GameExtinction {
+            get {
+                return ResourceManager.GetString("GameExtinction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STABILIZATION!.
+        /// </summary>
+        internal static string GameStabilization {
+            get {
+                return ResourceManager.GetString("GameStabilization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NONE.
         /// </summary>
         internal static string GenerationEmpty {
@@ -292,6 +310,24 @@ namespace GameOfLife.Properties {
         internal static string Max {
             get {
                 return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS ANY KEY TO CONTINUE.
+        /// </summary>
+        internal static string PressAnyKey {
+            get {
+                return ResourceManager.GetString("PressAnyKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PRESS ANY OTHER KEY TO CONTINUE.
+        /// </summary>
+        internal static string PressAnyOtherKey {
+            get {
+                return ResourceManager.GetString("PressAnyOtherKey", resourceCulture);
             }
         }
         
