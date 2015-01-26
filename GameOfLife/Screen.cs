@@ -32,6 +32,7 @@ namespace GameOfLife
         private static SizeF HelpPromptSize;
         private static SizeF GenerationCountSize;
         private static SizeF GridSettingsSize;
+        private static Size GridSize;
 
         private static PointF LogoPosition;
         private static PointF HelpPromptPosition;
@@ -45,6 +46,9 @@ namespace GameOfLife
         private static PointF CellSizeValuePosition;
         private static PointF LifeChanceTitlePosition;
         private static PointF LifeChanceValuePosition;
+        private static PointF GridPosition;
+
+        private static bool ValidGrid = false;
 
         /// <summary>
         /// Initializes the class to begin painting on the buffer.
@@ -485,7 +489,64 @@ namespace GameOfLife
         /// </summary>
         private static void DrawHelpPopup()
         {
-            throw new System.NotImplementedException();
+            // Build message array
+            PopupMessage[] Messages = new PopupMessage[16];
+            Messages[0].Text = Properties.Resources.HelpTitle;
+            Messages[0].Style = Style.HelpPopupTitleFont;
+            Messages[0].Color = Style.HelpPopupTitleTextColor;
+            Messages[1].Text = Properties.Resources.HelpMainControls;
+            Messages[1].Style = Style.HelpPopupSectionFont;
+            Messages[1].Color = Style.HelpPopupSectionTextColor;
+            Messages[2].Text = Properties.Resources.HelpExitGame;
+            Messages[2].Style = Style.HelpPopupItemFont;
+            Messages[2].Color = Style.HelpPopupItemTextColor;
+            Messages[3].Text = Properties.Resources.HelpNextStep;
+            Messages[3].Style = Style.HelpPopupItemFont;
+            Messages[3].Color = Style.HelpPopupItemTextColor;
+            Messages[4].Text = Properties.Resources.HelpAutoStep;
+            Messages[4].Style = Style.HelpPopupItemFont;
+            Messages[4].Color = Style.HelpPopupItemTextColor;
+            Messages[5].Text = Properties.Resources.HelpEndGame;
+            Messages[5].Style = Style.HelpPopupItemFont;
+            Messages[5].Color = Style.HelpPopupItemTextColor;
+            Messages[6].Text = Properties.Resources.HelpShowCredits;
+            Messages[6].Style = Style.HelpPopupItemFont;
+            Messages[6].Color = Style.HelpPopupItemTextColor;
+            Messages[7].Text = Properties.Resources.HelpBeforeGame;
+            Messages[7].Style = Style.HelpPopupSectionFont;
+            Messages[7].Color = Style.HelpPopupSectionTextColor;
+            Messages[8].Text = Properties.Resources.HelpIncreaseRows;
+            Messages[8].Style = Style.HelpPopupItemFont;
+            Messages[8].Color = Style.HelpPopupItemTextColor;
+            Messages[9].Text = Properties.Resources.HelpDecreaseRows;
+            Messages[9].Style = Style.HelpPopupItemFont;
+            Messages[9].Color = Style.HelpPopupItemTextColor;
+            Messages[10].Text = Properties.Resources.HelpIncreaseColumns;
+            Messages[10].Style = Style.HelpPopupItemFont;
+            Messages[10].Color = Style.HelpPopupItemTextColor;
+            Messages[11].Text = Properties.Resources.HelpDecreaseColumns;
+            Messages[11].Style = Style.HelpPopupItemFont;
+            Messages[11].Color = Style.HelpPopupItemTextColor;
+            Messages[12].Text = Properties.Resources.HelpIncreaseCellSize;
+            Messages[12].Style = Style.HelpPopupItemFont;
+            Messages[12].Color = Style.HelpPopupItemTextColor;
+            Messages[13].Text = Properties.Resources.HelpDecreaseCellSize;
+            Messages[13].Style = Style.HelpPopupItemFont;
+            Messages[13].Color = Style.HelpPopupItemTextColor;
+            Messages[14].Text = Properties.Resources.HelpIncreaseLifeChance;
+            Messages[14].Style = Style.HelpPopupItemFont;
+            Messages[14].Color = Style.HelpPopupItemTextColor;
+            Messages[15].Text = Properties.Resources.HelpDecreaseLifeChance;
+            Messages[15].Style = Style.HelpPopupItemFont;
+            Messages[15].Color = Style.HelpPopupItemTextColor;
+
+            // Specify alignments
+            Alignments Alignment = new Alignments();
+            Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.PopupVerticalAlignment = VerticalAlignment.Middle;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Left;
+
+            DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
         }
 
         /// <summary>
@@ -501,7 +562,22 @@ namespace GameOfLife
         /// </summary>
         private static void DrawExitConfirmationPopup()
         {
-            throw new System.NotImplementedException();
+            // Build message array
+            PopupMessage[] Messages = new PopupMessage[2];
+            Messages[0].Text = Properties.Resources.ExitConfirmation;
+            Messages[0].Style = Style.ExitConfirmationTitleFont;
+            Messages[0].Color = Style.ExitConfirmationTitleTextColor;
+            Messages[1].Text = Properties.Resources.ExitCancel;
+            Messages[1].Style = Style.ExitConfirmationSectionFont;
+            Messages[1].Color = Style.ExitConfirmationSectionTextColor;
+
+            // Specify alignments
+            Alignments Alignment = new Alignments();
+            Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.PopupVerticalAlignment = VerticalAlignment.Middle;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Center;
+
+            DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
         }
 
         /// <summary>
@@ -509,7 +585,27 @@ namespace GameOfLife
         /// </summary>
         private static void DrawOutcomePopup()
         {
-            throw new System.NotImplementedException();
+            // Build message array
+            PopupMessage[] Messages = new PopupMessage[1];
+            if (Life.Extinction)
+            {
+                Messages[0].Text = Properties.Resources.GameExtinction;
+                Messages[0].Color = Style.OutcomePopupExtinctionTextColor;
+            }
+            else if (Life.Stabilization)
+            {
+                Messages[0].Text = Properties.Resources.GameStabilization;
+                Messages[0].Color = Style.OutcomePopupStabilizationTextColor;
+            }
+            Messages[0].Style = Style.OutcomePopupFont;
+
+            // Specify alignments
+            Alignments Alignment = new Alignments();
+            Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.PopupVerticalAlignment = VerticalAlignment.Bottom;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Center;
+
+            DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
         }
 
         /// <summary>
@@ -517,7 +613,83 @@ namespace GameOfLife
         /// </summary>
         private static void DrawGrid()
         {
-            throw new System.NotImplementedException();
+            // make this draw an image after the game starts running to
+            // try to make it more efficient
+
+            Pen CurrentPen;
+
+            // When users have access to change the grid settings we use a
+            // darker pen to make it easier to see. Then when the game is
+            // running we make the grid less pronounced so the life squares
+            // stand out more.
+            if (State.Screen == ScreenState.GameRunning ||
+                State.Screen == ScreenState.GameStopped)
+            {
+                CurrentPen = Style.GridCellPen;
+            }
+            else
+            {
+                CurrentPen = Style.GridDarkCellPen;
+            }
+
+            // Check to see if the current grid settings have been measured.
+            // Measure them if they haven't.
+            if (!ValidGrid) MeasureGrid();
+
+            // DrawGrid surrounding rectangle.
+            Painter.DrawRectangle(
+                CurrentPen, 
+                GridPosition.X, 
+                GridPosition.Y,
+                GridSize.Width, 
+                GridSize.Height
+            );
+
+            // DrawGrid horizontal lines.
+            for (int i = 1; i < Setting.Rows; i++)
+            {
+                Painter.DrawLine(
+                    CurrentPen,
+                    GridPosition.X,
+                    GridPosition.Y + i + (i * Setting.CellSize),
+                    GridPosition.X + GridSize.Width,
+                    GridPosition.Y + i + (i * Setting.CellSize)
+                );
+            }
+
+            // DrawGrid vertical lines.
+            for (int i = 1; i < Setting.Columns; i++)
+            {
+                Painter.DrawLine(
+                    CurrentPen,
+                    GridPosition.X + i + (i * Setting.CellSize),
+                    GridPosition.Y,
+                    GridPosition.X + i + (i * Setting.CellSize),
+                    GridPosition.Y + GridSize.Height);
+            }
+        }
+
+        private static void MeasureGrid()
+        {
+            // Calculate the size of the grid.
+            // We want a pixel between each cell and a pixel surrounding
+            // all the cells.
+            GridSize = new Size(
+                (Setting.CellSize * Setting.Columns) + Setting.Columns, // Width
+                (Setting.CellSize * Setting.Rows) + Setting.Rows // Height
+            );
+
+            // The grid position is based on the size of the screen.
+            // We attempt to center the grid vertically and horizontally.
+            // To overcome grid flickering due to anti-aliasing, we add
+            // 0.5f to each value; see Book2 page 32 for explanation.
+            GridPosition = new PointF(
+                (float)Math.Floor((BufferSize.Width - GridSize.Width) / 2.0f) + 0.5f,
+                (float)Math.Floor((BufferSize.Height - GridSize.Height) / 2.0f) + 0.5f
+            );
+
+            // Claim gridSize is valid.
+            ValidGrid = true;
         }
 
         /// <summary>
@@ -525,18 +697,163 @@ namespace GameOfLife
         /// </summary>
         private static void DrawLife()
         {
-            throw new System.NotImplementedException();
+            // Draw life rectangles
+            for (int i = 1; i <= Setting.Rows; i++)
+            {
+                for (int j = 1; j <= Setting.Columns; j++)
+                {
+                    if (Life.GetCell(i, j) > 0)
+                    {
+                        Painter.FillRectangle(
+                            Style.LifeBrush[Life.GetCell(i, j)],
+                            GridPosition.X + ((Setting.CellSize + 1) * (j - 1)),
+                            GridPosition.Y + ((Setting.CellSize + 1) * (i - 1)),
+                            Setting.CellSize, Setting.CellSize
+                        );
+                    }
+                }
+            }
         }
 
         /// <summary>
-        /// Draws a popup to the buffer.
+        /// Will draw a popup to the buffer with a shaded background over the existing
+        /// screen elements and a bright background beneath the popup message.
         /// </summary>
-        private static void DrawPopup()
+        /// <param name="Messages">An array of messages displayed in the popup.</param>
+        /// <param name="PopupAlignment">Where the popup will be drawn.</param>
+        /// <param name="MessageMargin">The margin between the messages and the edge of the popup.</param>
+        /// <param name="MessageSpacing">The space between each individual message.</param>
+        private static void DrawPopup(PopupMessage[] Messages, Alignments PopupAlignment, float MessageMargin, float MessageSpacing)
         {
-            throw new System.NotImplementedException();
+            SizeF[] MessageSize = new SizeF[Messages.Length];
+            SizeF TotalMessageSize = new SizeF();
+            SizeF PopupSize = new SizeF();
+            PointF[] MessagePosition = new PointF[Messages.Length];
+            PointF PopupPosition = new PointF();
+
+            // Calculate sizes of all the messages and total size of all the messages.
+            for (int i = 0; i < Messages.Length; i++)
+            {
+                MessageSize[i] = Painter.MeasureString(Messages[i].Text, Messages[i].Style);
+                TotalMessageSize.Width = Math.Max(MessageSize[i].Width, TotalMessageSize.Width);
+                TotalMessageSize.Height += MessageSize[i].Height;
+            }
+            TotalMessageSize.Height += MessageSpacing * (Messages.Length - 1);
+
+            // Calculate the size of the popup.
+            PopupSize.Width = TotalMessageSize.Width + (MessageMargin * 2);
+            PopupSize.Height = TotalMessageSize.Height + (MessageMargin * 2);
+
+            // Calculate the X position of the popup.
+            if (PopupAlignment.PopupHorizontalAlignment == HorizontalAlignment.Left)
+            {
+                PopupPosition.X = 0;
+            }
+            else if (PopupAlignment.PopupHorizontalAlignment == HorizontalAlignment.Right)
+            {
+                PopupPosition.X = BufferSize.Width - PopupSize.Width;
+            }
+            else // Center
+            {
+                PopupPosition.X = (BufferSize.Width / 2) - (PopupSize.Width / 2);
+            }
+
+            // Calculate the Y position of the popup.
+            if (PopupAlignment.PopupVerticalAlignment == VerticalAlignment.Top)
+            {
+                PopupPosition.Y = 0;
+            }
+            else if (PopupAlignment.PopupVerticalAlignment == VerticalAlignment.Bottom)
+            {
+                PopupPosition.Y = BufferSize.Height - PopupSize.Height;
+            }
+            else // Middle
+            {
+                PopupPosition.Y = (BufferSize.Height / 2) - (PopupSize.Height / 2);
+            }
+
+            // Calculate the positions of the messages.
+            for (int i = 0; i < Messages.Length; i++)
+            {
+                // Horizontal position
+                if (PopupAlignment.MessageHorizontalAlignment == HorizontalAlignment.Left)
+                {
+                    MessagePosition[i].X = PopupPosition.X + MessageMargin;
+                }
+                else if (PopupAlignment.MessageHorizontalAlignment == HorizontalAlignment.Right)
+                {
+                    MessagePosition[i].X = (PopupPosition.X + PopupSize.Width) -
+                        (MessageSize[i].Width + MessageMargin);
+                }
+                else // Center
+                {
+                    MessagePosition[i].X = PopupPosition.X + (PopupSize.Width / 2) -
+                        (MessageSize[i].Width / 2);
+                }
+                // Vertical position
+                if (i == 0)
+                {
+                    MessagePosition[i].Y = PopupPosition.Y + MessageMargin;
+                }
+                else
+                {
+                    MessagePosition[i].Y = MessagePosition[i - 1].Y + MessageSize[i - 1].Height +
+                        MessageSpacing;
+                }
+            }
+
+            // Darken background
+            Painter.FillRectangle(
+                Style.PopupShadingColor, 
+                0, 0, 
+                BufferSize.Width, 
+                BufferSize.Height);
+
+            // DrawGrid popup background
+            Painter.FillRectangle(
+                Style.PopupBackgroundColor,
+                PopupPosition.X,
+                PopupPosition.Y,
+                PopupSize.Width,
+                PopupSize.Height
+            );
+
+            // DrawGrid messages
+            for (int i = 0; i < Messages.Length; i++)
+            {
+                Painter.DrawString(
+                    Messages[i].Text,
+                    Messages[i].Style,
+                    Messages[i].Color,
+                    MessagePosition[i]);
+            }
         }
-
-
+        // Used to build popups using DrawPopup()
+        private struct PopupMessage
+        {
+            public String Text;
+            public Font Style;
+            public SolidBrush Color;
+        }
+        private struct Alignments
+        {
+            public HorizontalAlignment PopupHorizontalAlignment;
+            public VerticalAlignment PopupVerticalAlignment;
+            public HorizontalAlignment MessageHorizontalAlignment;
+            public VerticalAlignment MessageVerticalAlignment;
+        }
+        private enum HorizontalAlignment
+        {
+            Center,
+            Left,
+            Right
+        }
+        private enum VerticalAlignment
+        {
+            Top,
+            Middle,
+            Bottom
+        }
 
         private static Size CalculateGridSpace()
         {
@@ -555,19 +872,19 @@ namespace GameOfLife
             return GridSpace;
         }
 
-        public static int CalculateMaxRows()
+        private static int CalculateMaxRows()
         {
             int MaxRows = (CalculateGridSpace().Height - 1) / (Setting.CellSize + 1);
             return MaxRows;
         }
 
-        public static int CalculateMaxColumns()
+        private static int CalculateMaxColumns()
         {
             int MaxColumns = (CalculateGridSpace().Width - 1) / (Setting.CellSize + 1);
             return MaxColumns;
         }
 
-        public static int CalculateMaxCellSize()
+        private static int CalculateMaxCellSize()
         {
             int MaxCellSize = Math.Min(
                 ((CalculateGridSpace().Height - 1) / Setting.Rows) - 1,
@@ -578,6 +895,13 @@ namespace GameOfLife
 
         private static void SetDefaultGridSize()
         {
+            Setting.Rows = CalculateMaxRows();
+            Setting.Columns = CalculateMaxColumns();
+        }
+
+        public static void MaximizeGridSize()
+        {
+            Setting.CellSize = 5;
             Setting.Rows = CalculateMaxRows();
             Setting.Columns = CalculateMaxColumns();
         }

@@ -215,9 +215,15 @@ namespace GameOfLife
         public static SolidBrush GenerationCountValueTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush GridSettingsTitleTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush GridSettingsValueTextColor = new SolidBrush(UIColor[0]);
-        public static SolidBrush HelpPromptTextColorsdf = new SolidBrush(UIColor[0]);
-        public static SolidBrush HelpPromptTextColorsdfs = new SolidBrush(UIColor[0]);
-        public static SolidBrush HelpPromptTextColorfdsfsd = new SolidBrush(UIColor[0]);
+        public static SolidBrush PopupBackgroundColor = new SolidBrush(UIColor[1]);
+        public static SolidBrush PopupShadingColor = new SolidBrush(UIColor[4]);
+        public static SolidBrush HelpPopupTitleTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush HelpPopupSectionTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush HelpPopupItemTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush ExitConfirmationTitleTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush ExitConfirmationSectionTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush OutcomePopupExtinctionTextColor = new SolidBrush(LifeColor[15]);
+        public static SolidBrush OutcomePopupStabilizationTextColor = new SolidBrush(LifeColor[8]);
 
 
         public static int ElementMargin = 10;
@@ -225,6 +231,9 @@ namespace GameOfLife
         public static int TextMargin = 20;
         public static int TextPadding = 10;
         public static int TextSpacing = 10;
+        public static int PopupMargin = 0;
+        public static int PopupPadding = 20;
+        public static int PopupSpacing = 5;
 
         private static PrivateFontCollection CustomFonts;
         public static Font SplashScreenFont;
@@ -233,9 +242,15 @@ namespace GameOfLife
         public static Font GenerationCountValueFont;
         public static Font GridSettingsTitleFont;
         public static Font GridSettingsValueFont;
-        public static Font GameCompleteFont;
+        public static Font HelpPopupTitleFont;
+        public static Font HelpPopupSectionFont;
+        public static Font HelpPopupItemFont;
+        public static Font ExitConfirmationTitleFont;
+        public static Font ExitConfirmationSectionFont;
+        public static Font OutcomePopupFont;
 
-
+        public static Pen GridCellPen = new Pen(UIColor[3], 1);
+        public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
 
 
         public static void Initialize()
@@ -262,6 +277,67 @@ namespace GameOfLife
                 16,
                 FontStyle.Bold
             );
+
+            GenerationCountTitleFont = new Font(
+                CustomFonts.Families[0], 
+                20, 
+                FontStyle.Bold
+            );
+            
+            GenerationCountValueFont = new Font(
+                CustomFonts.Families[0], 
+                20, 
+                FontStyle.Regular
+            );
+
+            GridSettingsTitleFont = new Font(
+                CustomFonts.Families[0], 
+                14, 
+                FontStyle.Bold
+            );
+            
+            GridSettingsValueFont = new Font(
+                CustomFonts.Families[0], 
+                14, 
+                FontStyle.Regular
+            );
+
+            HelpPopupTitleFont = new Font(
+                CustomFonts.Families[0], 
+                16, 
+                FontStyle.Bold
+            );
+
+            HelpPopupSectionFont = new Font(
+                CustomFonts.Families[0], 
+                12, 
+                FontStyle.Regular
+            );
+
+            HelpPopupItemFont = new Font(
+                CustomFonts.Families[0], 
+                14, 
+                FontStyle.Regular
+            );
+
+            ExitConfirmationTitleFont = new Font(
+                CustomFonts.Families[0],
+                16,
+                FontStyle.Bold
+            );
+
+            ExitConfirmationSectionFont = new Font(
+                CustomFonts.Families[0],
+                12,
+                FontStyle.Regular
+            );
+
+            OutcomePopupFont = new Font(
+                CustomFonts.Families[0],
+                20,
+                FontStyle.Bold
+            );
+
         }
     }
 }

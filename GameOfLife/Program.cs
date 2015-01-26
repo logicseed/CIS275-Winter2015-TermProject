@@ -74,6 +74,9 @@ namespace GameOfLife
             Cursor.Hide();
             InitializeStyles();
             InitializeStates();
+
+            Style.Initialize();
+            Screen.Initialize(this.Size);
             
             //this.SetStyle(ControlStyles.DoubleBuffer, true);
 
