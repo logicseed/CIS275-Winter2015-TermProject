@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GameOfLife</RootNamespace>
     <AssemblyName>GameOfLife</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -58,7 +58,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -72,9 +71,7 @@
     <Compile Include="Life.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="States.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="States.cs" />
     <Compile Include="Program.cs">
       <SubType>Form</SubType>
     </Compile>

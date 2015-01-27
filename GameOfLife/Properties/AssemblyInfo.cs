@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("The Game of Life")]
-[assembly: AssemblyCopyright("Copyright ©2015 Marc King and Fan Zhang")]
+[assembly: AssemblyCopyright("Copyright ©2015 Marc King")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
