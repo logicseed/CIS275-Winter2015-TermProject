@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace GameOfLife
 {
@@ -148,13 +149,40 @@ namespace GameOfLife
         public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
 
 
-        public static void Initialize()
+        public static void Initialize(Form Parent)
         {
             CustomFonts = new PrivateFontCollection();
 
+            Stream FontStream = Parent.GetType().Assembly.GetManifestResourceStream("GameOfLife.GameOfLife-Regular.ttf");
+            byte[] FontData = new byte[FontStream.Length];
+            FontStream.Read(FontData, 0, (int)FontStream.Length);
+            FontStream.Close();
+            unsafe
+            {
+                fixed (byte* pFontData = FontData)
+                {
+                    CustomFonts.AddMemoryFont((System.IntPtr)pFontData, FontData.Length);
+                }
+            }
+            FontStream = Parent.GetType().Assembly.GetManifestResourceStream("GameOfLife.GameOfLife-Bold.ttf");
+            FontData = new byte[FontStream.Length];
+            FontStream.Read(FontData, 0, (int)FontStream.Length);
+            FontStream.Close();
+            unsafe
+            {
+                fixed (byte* pFontData = FontData)
+                {
+                    CustomFonts.AddMemoryFont((System.IntPtr)pFontData, FontData.Length);
+                }
+            }
+
+
+
+
+
             // Load custom fonts.
-            CustomFonts.AddFontFile("GameOfLife-Regular.ttf");
-            CustomFonts.AddFontFile("GameOfLife-Bold.ttf");
+            //CustomFonts.AddFontFile("GameOfLife-Regular.ttf");
+            //CustomFonts.AddFontFile("GameOfLife-Bold.ttf");
 
             InitializeFonts();
         }

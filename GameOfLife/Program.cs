@@ -50,7 +50,7 @@ namespace GameOfLife
             InitializeComponent(); // rename after integrating Designer code : InitializeProgram();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             Cursor.Hide();
-            Style.Initialize();
+            Style.Initialize(this);
             Screen.Initialize(this.Size);
         }
 

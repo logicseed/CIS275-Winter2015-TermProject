@@ -60,6 +60,9 @@ namespace GameOfLife
             Buffer = new Bitmap(BufferSize.Width, BufferSize.Height);
             Painter = Graphics.FromImage(Buffer);
             Painter.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+            //Painter.TextRenderingHint = TextRenderingHint.AntiAlias;
+            //Painter.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+            //Painter.TextRenderingHint = TextRenderingHint.SystemDefault;
         }
 
         /// <summary>
