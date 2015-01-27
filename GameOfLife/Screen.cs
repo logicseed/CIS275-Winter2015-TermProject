@@ -111,6 +111,11 @@ namespace GameOfLife
             }
         }
 
+        public static void InvalidateGrid()
+        {
+            ValidGrid = false;
+        }
+
         /// <summary>
         /// Draws the splash screen to the buffer.
         /// </summary>
@@ -554,7 +559,49 @@ namespace GameOfLife
         /// </summary>
         private static void DrawCreditsPopup()
         {
-            throw new System.NotImplementedException();
+            // Build message array
+            PopupMessage[] Messages = new PopupMessage[11];
+            Messages[0].Text = Properties.Resources.CreditsTitle;
+            Messages[0].Style = Style.CreditsPopupTitleFont;
+            Messages[0].Color = Style.CreditsPopupTitleTextColor;
+            Messages[1].Text = "  ";
+            Messages[1].Style = Style.PopupSpacerFont;
+            Messages[1].Color = Style.PopupSpacerColor;
+            Messages[2].Text = Properties.Resources.CreditsGame;
+            Messages[2].Style = Style.CreditsPopupSectionFont;
+            Messages[2].Color = Style.CreditsPopupSectionTextColor;
+            Messages[3].Text = Properties.Resources.CreditsConway;
+            Messages[3].Style = Style.CreditsPopupItemFont;
+            Messages[3].Color = Style.CreditsPopupItemTextColor;
+            Messages[4].Text = "  ";
+            Messages[4].Style = Style.PopupSpacerFont;
+            Messages[4].Color = Style.PopupSpacerColor;
+            Messages[5].Text = Properties.Resources.CreditsProgramming;
+            Messages[5].Style = Style.CreditsPopupSectionFont;
+            Messages[5].Color = Style.CreditsPopupSectionTextColor;
+            Messages[6].Text = Properties.Resources.CreditsMarcKing;
+            Messages[6].Style = Style.CreditsPopupItemFont;
+            Messages[6].Color = Style.CreditsPopupItemTextColor;
+            Messages[7].Text = "  ";
+            Messages[7].Style = Style.PopupSpacerFont;
+            Messages[7].Color = Style.PopupSpacerColor;
+            Messages[8].Text = Properties.Resources.CreditsStyles;
+            Messages[8].Style = Style.CreditsPopupSectionFont;
+            Messages[8].Color = Style.CreditsPopupSectionTextColor;
+            Messages[9].Text = Properties.Resources.CreditsGoogle;
+            Messages[9].Style = Style.CreditsPopupItemFont;
+            Messages[9].Color = Style.CreditsPopupItemTextColor;
+            Messages[10].Text = Properties.Resources.CreditsModMarc;
+            Messages[10].Style = Style.CreditsPopupItemFont;
+            Messages[10].Color = Style.CreditsPopupItemTextColor;
+
+            // Specify alignments
+            Alignments Alignment = new Alignments();
+            Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.PopupVerticalAlignment = VerticalAlignment.Middle;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Center;
+
+            DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
         }
 
         /// <summary>
@@ -860,31 +907,31 @@ namespace GameOfLife
             Size GridSpace = new Size(
                 BufferSize.Width - (Style.ElementMargin * 2),
                 BufferSize.Height -
-                    (int)Math.Ceiling(Math.Max(
+                    ((int)Math.Ceiling(Math.Max(
                         LogoSize.Height,
                         HelpPromptSize.Height
-                    )) -
+                    )) +
                     (int)Math.Ceiling(Math.Max(
                         GenerationCountSize.Height,
                         GridSettingsSize.Height
-                    )) + (Style.ElementMargin * 6)
+                    )) + (Style.ElementMargin * 2))
             );
             return GridSpace;
         }
 
-        private static int CalculateMaxRows()
+        public static int CalculateMaxRows()
         {
             int MaxRows = (CalculateGridSpace().Height - 1) / (Setting.CellSize + 1);
             return MaxRows;
         }
 
-        private static int CalculateMaxColumns()
+        public static int CalculateMaxColumns()
         {
             int MaxColumns = (CalculateGridSpace().Width - 1) / (Setting.CellSize + 1);
             return MaxColumns;
         }
 
-        private static int CalculateMaxCellSize()
+        public static int CalculateMaxCellSize()
         {
             int MaxCellSize = Math.Min(
                 ((CalculateGridSpace().Height - 1) / Setting.Rows) - 1,
@@ -904,6 +951,15 @@ namespace GameOfLife
             Setting.CellSize = 5;
             Setting.Rows = CalculateMaxRows();
             Setting.Columns = CalculateMaxColumns();
+            ValidGrid = false;
+        }
+
+        public static void MinimizeGridSize()
+        {
+            Setting.CellSize = 100;
+            Setting.Rows = CalculateMaxRows();
+            Setting.Columns = CalculateMaxColumns();
+            ValidGrid = false;
         }
     }
 }

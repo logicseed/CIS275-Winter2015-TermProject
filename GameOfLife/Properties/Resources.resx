@@ -182,7 +182,7 @@
     <value>] - Decrease Rows</value>
   </data>
   <data name="HelpEndGame" xml:space="preserve">
-    <value># - End Game</value>
+    <value># - Reset Game</value>
   </data>
   <data name="HelpExitGame" xml:space="preserve">
     <value>$ - Exit Game</value>
@@ -216,5 +216,29 @@
   </data>
   <data name="PressAnyOtherKey" xml:space="preserve">
     <value>PRESS ANY OTHER KEY TO CONTINUE</value>
+  </data>
+  <data name="CreditsConway" xml:space="preserve">
+    <value>John Horton Conway</value>
+  </data>
+  <data name="CreditsGame" xml:space="preserve">
+    <value>GAME CONCEPT</value>
+  </data>
+  <data name="CreditsGoogle" xml:space="preserve">
+    <value>Google Inc (Creative Commons BY-NC-SA)</value>
+  </data>
+  <data name="CreditsMarcKing" xml:space="preserve">
+    <value>Marc King</value>
+  </data>
+  <data name="CreditsModMarc" xml:space="preserve">
+    <value>Fonts Modified by Marc King</value>
+  </data>
+  <data name="CreditsProgramming" xml:space="preserve">
+    <value>PROGRAMMING AND DESIGN</value>
+  </data>
+  <data name="CreditsStyles" xml:space="preserve">
+    <value>FONTS AND COLORS</value>
+  </data>
+  <data name="CreditsTitle" xml:space="preserve">
+    <value>GAME OF LIFE CREDITS</value>
   </data>
 </root>

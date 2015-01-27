@@ -45,247 +45,206 @@ namespace GameOfLife
     public partial class Program : Form
     {
         
-
-        
-
-        // Grid fields
-        private int gridRows = 1;
-        private int gridColumns = 1;
-        private byte gridCellSize = 50;
-        private byte lifeChance = 50;
-
-
-        private bool Increase = true;
-        private bool Decrease = false;
-
-        private LifeManager Life = new LifeManager();
-
-        
-
-        
-
-       
-
-        
-
         public Program()
         {
             InitializeComponent(); // rename after integrating Designer code : InitializeProgram();
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
             Cursor.Hide();
-            InitializeStyles();
-            InitializeStates();
-
             Style.Initialize();
             Screen.Initialize(this.Size);
-            
-            //this.SetStyle(ControlStyles.DoubleBuffer, true);
+        }
 
+        // We override the OnPaintBackground function to allow the paint event
+        // to handle all the graphics. This prevents screen flickering.
+        protected override void OnPaintBackground(PaintEventArgs pevent)
+        {
+        }
 
-            
-
-            //this.BackColor = uiColor[1];
-
+        private void Program_Paint(object sender, PaintEventArgs e)
+        {
+            Screen.Initialize(this.Size);
+            Screen.DrawScreen();
+            e.Graphics.DrawImage(Screen.GetBuffer(), 0,0);
         }
 
 
-        private void CancelExit()
+        private void ShowSplashScreen()
         {
-            State[ShowConfirmExit] = false;
+            State.Screen = ScreenState.Splash;
         }
 
-        private void EndGame()
+        private void CloseSplashScreen()
         {
-            State[GameRunning] = false;
-            Life.ResetGame();
+            State.Screen = ScreenState.FirstDisplay;
+        }
+
+        private void ShowHelpPopup()
+        {
+            State.Popup = PopupState.Help;
+            if (State.Screen == ScreenState.GameRunning) PauseAutoStep();
+        }
+
+        private void CloseHelpPopup()
+        {
+            State.Popup = PopupState.None;
+        }
+
+        private void ShowCreditsPopup()
+        {
+            State.Popup = PopupState.Credits;
+            if (State.Screen == ScreenState.GameRunning) PauseAutoStep();
+        }
+
+        private void CloseCreditsPopup()
+        {
+            State.Popup = PopupState.None;
+        }
+
+        private void ShowExitConfirmationPopup()
+        {
+            State.Popup = PopupState.ExitConfirmation;
+            if (State.Screen == ScreenState.GameRunning) PauseAutoStep();
+        }
+
+        private void CloseExitConfirmationPopup()
+        {
+            State.Popup = PopupState.None;
+        }
+
+        private void ShowOutcomePopup()
+        {
+            State.Popup = PopupState.Outcome;
+        }
+
+        private void CloseOutcomePopup()
+        {
+            State.Popup = PopupState.None;
+            State.Screen = ScreenState.NoGame;
+        }
+
+        private void StartGame()
+        {
+            Life.Start();
+            State.Screen = ScreenState.GameStopped;
+        }
+
+        private void NextStep()
+        {
+            if (State.Screen == ScreenState.NoGame)
+            {
+                StartGame();
+            }
+            else
+            {
+                Life.Next();
+            }
+        }
+
+        private void StartAutoStep()
+        {
+            if (State.Screen == ScreenState.NoGame)
+            {
+                StartGame();
+            }
+            AutoStepTimer.Enabled = true;
+            State.Screen = ScreenState.GameRunning;
+        }
+
+        private void AutoStep(object sender, EventArgs e)
+        {
+            if (Life.GameRunning)
+            {
+                NextStep();
+            }
+            else
+            {
+                PauseAutoStep();
+                ShowOutcomePopup();
+            }
+            this.Invalidate();
         }
 
         private void PauseAutoStep()
         {
             AutoStepTimer.Enabled = false;
-            State[AutoStepping] = false;
+            State.Screen = ScreenState.GameStopped;
         }
 
-        private void BeginAutoStep()
+        private void ResetGame()
         {
-            if (!State[GameRunning])
-            {
-                BeginGame();
-            }
-            AutoStepTimer.Enabled = true;
-            State[AutoStepping] = true;
+            PauseAutoStep();
+            State.Screen = ScreenState.NoGame;
+            Life.Reset();
         }
 
-        private void CloseSplashScreen()
+        private void ExitGame()
         {
-            State[ShowSplash] = false;
+            this.Close();
         }
 
-        private void OpenHelpScreen()
+        private void IncreaseRows()
         {
-            State[ShowHelp] = true;
-            if (State[AutoStepping])
+            if (Setting.Rows < Screen.CalculateMaxRows())
             {
-                PauseAutoStep();
+                Setting.Rows++;
+                Screen.InvalidateGrid();
             }
         }
-
-        
-
-        private void NextStep()
+        private void DecreaseRows()
         {
-            State[GameRunning] = Life.GameRunning;
-            if (State[GameRunning])
+            if (Setting.Rows > Setting.MinimumRows)
             {
-                Life.NextGeneration();
-                State[GameRunning] = Life.GameRunning;
-            }
-            if (State[AutoStepping] && State[GameRunning])
-            {
-                this.Invalidate();
-            }
-            else
-            {
-                PauseAutoStep();
-            }
-            if (Life.Stabilization || Life.Extinction)
-            {
-                State[GameComplete] = true;
-                State[ShowOutcome] = true;
-                this.Invalidate();
+                Setting.Rows--;
+                Screen.InvalidateGrid();
             }
         }
 
-        private void AutoStep(object sender, EventArgs e)
+        private void IncreaseColumns()
         {
-            NextStep();
+            if (Setting.Columns < Screen.CalculateMaxColumns())
+            {
+                Setting.Columns++;
+                Screen.InvalidateGrid();
+            }
         }
-
-        private void BeginGame()
+        private void DecreaseColumns()
         {
-            Life.CreateNewMatrix(gridRows, gridColumns);
-            Life.RandomizeMatrix(lifeChance);
-            State[GameRunning] = Life.GameRunning;
-        }
-
-        private void ChangeRows(bool Change)
-        {
-            if (!State[GameRunning] && Life.GameRunning)
+            if (Setting.Columns > Setting.MinimumColumns)
             {
-                Life.ResetGame();
-                State[GameRunning] = false;
-            }
-
-                if (Change == Increase && gridRows < CalculateMaxRows())
-                {
-                    gridRows++;
-                }
-                else if (Change == Decrease && gridRows > 1)
-                {
-                    gridRows--;
-                }
-
-            InvalidateGrid();
-        }
-
-        private void ChangeColumns(bool Change)
-        {
-            if (!State[GameRunning] && Life.GameRunning)
-            {
-                Life.ResetGame();
-                State[GameRunning] = false;
-            }
-            if (Change == Increase && gridColumns < CalculateMaxColumns())
-            {
-                gridColumns++;
-            }
-            else if (Change == Decrease && gridColumns > 1)
-            {
-                gridColumns--;
-            }
-            InvalidateGrid();
-        }
-
-        private void ChangeCellSize(bool Change)
-        {
-            if (!State[GameRunning] && Life.GameRunning)
-            {
-                Life.ResetGame();
-                State[GameRunning] = false;
-            }
-            if (Change == Increase && gridCellSize < CalculateMaxCellSize())
-            {
-                gridCellSize++;
-            }
-            else if (Change == Decrease && gridCellSize > 5)
-            {
-                gridCellSize--;
-            }
-            InvalidateGrid();
-        }
-
-        private void ChangeLifeChance(bool Change)
-        {
-            if (Change == Increase && lifeChance < 100)
-            {
-                lifeChance++;
-            }
-            else if (Change == Decrease && lifeChance > 1)
-            {
-                lifeChance--;
+                Setting.Columns--;
+                Screen.InvalidateGrid();
             }
         }
 
-        private Size CalculateGridSpace()
+        private void IncreaseCellSize()
         {
-            Size gridSpace = new Size(
-                this.Width - (elementMargin.Width * 2),
-                this.Height -
-                    (int)Math.Ceiling(Math.Max(
-                        totalLogoSize.Height,
-                        totalHelpPromptSize.Height
-                    )) -
-                    (int)Math.Ceiling(Math.Max(
-                        totalGenerationCountSize.Height,
-                        totalSettingsSize.Height
-                    )) + (elementMargin.Width * 6)
-            );
-
-            return gridSpace;
-        }
-
-        private int CalculateMaxRows()
-        {
-            int maxRows = (CalculateGridSpace().Height - 1) / (gridCellSize + 1);
-            return maxRows;
-        }
-
-        private int CalculateMaxColumns()
-        {
-            int maxColumns = (CalculateGridSpace().Width - 1) / (gridCellSize + 1);
-            return maxColumns;
-        }
-
-        private int CalculateMaxCellSize()
-        {
-            int maxCellSize = Math.Min(
-                ((CalculateGridSpace().Height - 1) / gridRows) - 1,
-                ((CalculateGridSpace().Width - 1) / gridColumns) - 1
-                );
-            return maxCellSize;
-        }
-
-        private void SetDefaultGridSize()
-        {
-            gridRows = CalculateMaxRows();
-            gridColumns = CalculateMaxColumns();
-        }
-
-        private void ConfirmExit()
-        {
-            State[ShowConfirmExit] = true;
-            if(State[AutoStepping])
+            if (Setting.CellSize < Screen.CalculateMaxCellSize())
             {
-                PauseAutoStep();
+                Setting.CellSize++;
+                Screen.InvalidateGrid();
+            }
+        }
+        private void DecreaseCellSize()
+        {
+            if (Setting.CellSize > Setting.MinimumCellSize)
+            {
+                Setting.CellSize--;
+                Screen.InvalidateGrid();
+            }
+        }
+
+        private void IncreaseLifeChance()
+        {
+            if (Setting.LifeChance < Setting.MaximumLifeChance)
+            {
+                Setting.LifeChance++;
+            }
+        }
+        private void DecreaseLifeChance()
+        {
+            if (Setting.LifeChance > Setting.MinimumLifeChance)
+            {
+                Setting.LifeChance--;
             }
         }
     }

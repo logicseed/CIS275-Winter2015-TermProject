@@ -79,6 +79,78 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to John Horton Conway.
+        /// </summary>
+        internal static string CreditsConway {
+            get {
+                return ResourceManager.GetString("CreditsConway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GAME CONCEPT.
+        /// </summary>
+        internal static string CreditsGame {
+            get {
+                return ResourceManager.GetString("CreditsGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Google Inc (Creative Commons BY-NC-SA).
+        /// </summary>
+        internal static string CreditsGoogle {
+            get {
+                return ResourceManager.GetString("CreditsGoogle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marc King.
+        /// </summary>
+        internal static string CreditsMarcKing {
+            get {
+                return ResourceManager.GetString("CreditsMarcKing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fonts Modified by Marc King.
+        /// </summary>
+        internal static string CreditsModMarc {
+            get {
+                return ResourceManager.GetString("CreditsModMarc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PROGRAMMING AND DESIGN.
+        /// </summary>
+        internal static string CreditsProgramming {
+            get {
+                return ResourceManager.GetString("CreditsProgramming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FONTS AND COLORS.
+        /// </summary>
+        internal static string CreditsStyles {
+            get {
+                return ResourceManager.GetString("CreditsStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GAME OF LIFE CREDITS.
+        /// </summary>
+        internal static string CreditsTitle {
+            get {
+                return ResourceManager.GetString("CreditsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PRESS ANY OTHER KEY TO CONTINUE.
         /// </summary>
         internal static string ExitCancel {
@@ -187,7 +259,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # - End Game.
+        ///   Looks up a localized string similar to # - Reset Game.
         /// </summary>
         internal static string HelpEndGame {
             get {

@@ -15,33 +15,32 @@ namespace GameOfLife
             switch(e.KeyCode)
             {
                 case Keys.H:
-                    // H will open the help screen at all points during the game
+                    // H will open the help popup at all points during the game
                     // except when the splash screen is being displayed.
-                    if (!State[ShowSplash] && !State[ShowHelp] 
-                        && !State[ShowConfirmExit] && !State[ShowCredits]
-                        && !State[ShowOutcome])
+                    if (State.Screen != ScreenState.Splash &&
+                        State.Popup == PopupState.None)
                     {
-                        OpenHelpScreen();
+                        ShowHelpPopup();
                         break;
                     }
                     goto default; // This handles H used as any-key.
                 case Keys.X:
                     // X will reset the current game when a game is running.
-                    if (State[GameRunning] && !State[ShowHelp] 
-                        && !State[ShowCredits] && !State[ShowConfirmExit]
-                        && !State[ShowOutcome])
+                    if ((State.Screen == ScreenState.GameStopped ||
+                        State.Screen == ScreenState.GameRunning) &&
+                        State.Popup == PopupState.None)
                     {
-                        EndGame();
+                        ResetGame();
                         break;
                     }
                     goto default; // This handles X used as any-key.
                 case Keys.C:
                     // C will shows the credits screen at all points during the
                     // game except when the splash screen is being displayed.
-                    if(!State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowConfirmExit] && !State[ShowOutcome])
+                    if (State.Screen != ScreenState.Splash &&
+                        State.Popup == PopupState.None)
                     {
-                        State[ShowCredits] = true;
+                        ShowCreditsPopup();
                         break;
                     }
                     goto default; // This handles C used as any-key.
@@ -49,23 +48,20 @@ namespace GameOfLife
                     // ESC will exit the game at all point during the game, except
                     // when a popup screen is showing. However, if a game is
                     // currently running the user will be asked to confirm exiting.
-                    if (State[GameRunning] && !State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowCredits] && !State[ShowOutcome])
+                    if (State.Screen != ScreenState.Splash &&
+                        (State.Popup == PopupState.ExitConfirmation ||
+                        State.Popup == PopupState.None))
                     {
-                        if (State[ShowConfirmExit])
+                        if(State.Popup == PopupState.ExitConfirmation)
                         {
-                            this.Close();
+                            ExitGame();
+                            break;
                         }
                         else
                         {
-                            ConfirmExit();
+                            ShowExitConfirmationPopup();
                             break;
                         }
-                    }
-                    else if (!State[ShowSplash] && !State[ShowHelp] && !State[ShowCredits]
-                        && !State[ShowOutcome])
-                    {
-                        this.Close();
                     }
                     goto default; // This handles ESC used as any-key.
                 case Keys.Up:
@@ -73,27 +69,26 @@ namespace GameOfLife
                     // modifier keys it will increase the row count. With the
                     // SHIFT modifer key it will increase the cell size, and with
                     // the CTRL modifier key it will increase the life chance.
-                    if (!State[GameRunning] && !State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowCredits] && !State[ShowConfirmExit]
-                        && !State[ShowOutcome])
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
                     {
                         // Handle modifier keys.
                         if (!e.Shift && !e.Control)
                         {
                             // ONLY UP
-                            ChangeRows(Increase);
+                            IncreaseRows();
                             break;
                         }
                         else if(e.Shift && !e.Control)
                         {
                             // SHIFT UP
-                            ChangeCellSize(Increase);
+                            IncreaseCellSize();
                             break;
                         }
                         else if (!e.Shift && e.Control)
                         {
                             // CONTROL UP
-                            ChangeLifeChance(Increase);
+                            IncreaseLifeChance();
                             break;
                         }
                     }
@@ -103,27 +98,26 @@ namespace GameOfLife
                     // modifier keys it will decrease the row count. With the
                     // SHIFT modifer key it will decrease the cell size, and with
                     // the CTRL modifier key it will decrease the life chance.
-                    if (!State[GameRunning] && !State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowCredits] && !State[ShowConfirmExit]
-                        && !State[ShowOutcome])
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
                     {
                         // Handle modifier keys.
                         if (!e.Shift && !e.Control)
                         {
                             // ONLY DOWN
-                            ChangeRows(Decrease);
+                            DecreaseRows();
                             break;
                         }
                         else if (e.Shift && !e.Control)
                         {
                             // SHIFT DOWN
-                            ChangeCellSize(Decrease);
+                            DecreaseCellSize();
                             break;
                         }
                         else if (!e.Shift && e.Control)
                         {
                             // CONTROL DOWN
-                            ChangeLifeChance(Decrease);
+                            DecreaseLifeChance();
                             break;
                         }
                     }
@@ -131,14 +125,13 @@ namespace GameOfLife
                 case Keys.Left:
                     // LEFT only functions when the game isn't running. It will
                     // decrease the column count.
-                    if (!State[GameRunning] && !State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowCredits] && !State[ShowConfirmExit]
-                        && !State[ShowOutcome])
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
                     {
                         if (!e.Shift && !e.Control)
                         {
                             // ONLY LEFT
-                            ChangeColumns(Decrease);
+                            DecreaseColumns();
                             break;
                         }
                     }
@@ -146,14 +139,13 @@ namespace GameOfLife
                 case Keys.Right:
                     // RIGHT only functions when the game isn't running. It will
                     // increase the column count.
-                    if (!State[GameRunning] && !State[ShowSplash] && !State[ShowHelp]
-                        && !State[ShowCredits] && !State[ShowConfirmExit]
-                        && !State[ShowOutcome])
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
                     {
                         if (!e.Shift && !e.Control)
                         {
                             // ONLY RIGHT
-                            ChangeColumns(Increase);
+                            IncreaseColumns();
                             break;
                         }
                     }
@@ -162,20 +154,20 @@ namespace GameOfLife
                     // SPACE functions at all points during the game except when
                     // a popup screen is being displayed. It will step through
                     // generations of the game.
-                    if (!State[ShowSplash] && !State[ShowHelp] && !State[ShowCredits]
-                        && !State[ShowConfirmExit] && !State[ShowOutcome])
+                    if (State.Screen != ScreenState.Splash &&
+                        State.Popup == PopupState.None)
                     {
-                        if (!State[GameRunning])
+                        if (State.Screen == ScreenState.NoGame)
                         {
-                            BeginGame();
+                            StartGame();
                             break;
                         }
-                        else if (State[GameRunning] && State[AutoStepping])
+                        else if (State.Screen == ScreenState.GameRunning)
                         {
                             PauseAutoStep();
                             break;
                         }
-                        else if (State[GameRunning] && !State[AutoStepping])
+                        else if (State.Screen == ScreenState.GameStopped)
                         {
                             NextStep();
                             break;
@@ -187,45 +179,72 @@ namespace GameOfLife
                     // a popup screen is being displayed. It will start auto-
                     // stepping if the game isn't auto-stepping, or pause auto-
                     // stepping if it is.
-                    if (!State[ShowSplash] && !State[ShowHelp] && !State[ShowCredits]
-                        && !State[ShowConfirmExit] && !State[ShowOutcome])
+                    if (State.Screen != ScreenState.Splash &&
+                        State.Popup == PopupState.None)
                     {
-                        if (State[AutoStepping] && State[GameRunning])
+                        if (State.Screen == ScreenState.GameRunning)
                         {
                             PauseAutoStep();
                             break;
                         }
-                        else if (!State[AutoStepping])
+                        else if (State.Screen == ScreenState.GameStopped ||
+                            State.Screen == ScreenState.NoGame)
                         {
-                            BeginAutoStep();
+                            StartAutoStep();
                             break;
                         }
                     }
                     goto default; // This handles ENTER used as any-key.
+                // Developer-Only Keys BEGIN
+
+
+                case Keys.M:
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
+                    {
+                        if (e.Shift && e.Control)
+                        {
+                            Screen.MaximizeGridSize();
+                            break;
+                        }
+                    }
+                    goto default;
+                case Keys.N:
+                    if (State.Screen == ScreenState.NoGame &&
+                        State.Popup == PopupState.None)
+                    {
+                        if (e.Shift && e.Control)
+                        {
+                            Screen.MinimizeGridSize();
+                            break;
+                        }
+                    }
+                    goto default;
+                // Developer-Only Keys END
+
                 default:
                     // Any other key that is pressed will close the splash screen,
                     // cancel an exit confirmation, exit the help screen, or be
                     // ignored.
-                    if (State[ShowSplash])
+                    if (State.Screen == ScreenState.Splash)
                     {
-                        State[ShowSplash] = false;
-                        State[FirstDisplay] = true;
+                        CloseSplashScreen();
                     }
-                    else if (State[ShowHelp])
+                    else if (State.Popup == PopupState.Help)
                     {
-                        State[ShowHelp] = false;
+                        CloseHelpPopup();
                     }
-                    else if (State[ShowCredits])
+                    else if (State.Popup == PopupState.Credits)
                     {
-                        State[ShowCredits] = false;
+                        CloseCreditsPopup();
                     }
-                    else if (State[ShowConfirmExit])
+                    else if (State.Popup == PopupState.ExitConfirmation)
                     {
-                        State[ShowConfirmExit] = false;
+                        CloseExitConfirmationPopup();
                     }
-                    else if (State[ShowOutcome])
+                    else if (State.Popup == PopupState.Outcome)
                     {
-                        State[ShowOutcome] = false;
+                        CloseOutcomePopup();
                     }
                     else
                     {
