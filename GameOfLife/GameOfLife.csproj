@@ -97,8 +97,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
-    <EmbeddedResource Include="GameOfLife-Bold.ttf" />
-    <EmbeddedResource Include="GameOfLife-Regular.ttf" />
+    <None Include="Fonts\CHANGES.md" />
+    <None Include="Fonts\LICENSE.md" />
+    <None Include="Fonts\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
