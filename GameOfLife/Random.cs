@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * The Game of Life - Marc King
+ * Programmed for CIS275 - Winter 2015
+ * 
+ * Random.cs
+ * 
+ * Allows static access to the System.Random class.
+ * 
+ */
+
+using System;
 
 namespace GameOfLife
 {

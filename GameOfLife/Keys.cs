@@ -1,4 +1,15 @@
-﻿using System.Windows.Forms;
+﻿/*
+ * The Game of Life - Marc King
+ * Programmed for CIS275 - Winter 2015
+ * 
+ * Keys.cs
+ * 
+ * A part of the Program class that contains all the code used to handle key
+ * presses by the user.
+ * 
+ */
+
+using System.Windows.Forms;
 using System.Media;
 
 namespace GameOfLife
@@ -8,7 +19,7 @@ namespace GameOfLife
         /// <summary>
         /// Handles all key presses during the running of the game. Due to the
         /// complexity of the branching, this method should only contain branching
-        /// code, function calls, and state changes. No other code should be included.
+        /// code and function calls. No other code should be included.
         /// </summary>
         private void Program_KeyDown(object sender, KeyEventArgs e)
         {
@@ -195,9 +206,9 @@ namespace GameOfLife
                         }
                     }
                     goto default; // This handles ENTER used as any-key.
+                
+                
                 // Developer-Only Keys BEGIN
-
-
                 case Keys.M:
                     if (State.Screen == ScreenState.NoGame &&
                         State.Popup == PopupState.None)
@@ -222,6 +233,7 @@ namespace GameOfLife
                     goto default;
                 // Developer-Only Keys END
 
+
                 default:
                     // Any other key that is pressed will close the splash screen,
                     // cancel an exit confirmation, exit the help screen, or be
@@ -229,6 +241,10 @@ namespace GameOfLife
                     if (State.Screen == ScreenState.Splash)
                     {
                         CloseSplashScreen();
+                    }
+                    else if (State.Popup == PopupState.Introduction)
+                    {
+                        CloseIntroductionPopup();
                     }
                     else if (State.Popup == PopupState.Help)
                     {
@@ -249,7 +265,7 @@ namespace GameOfLife
                     else
                     {
                         // Handle invalid key press
-                        SystemSounds.Beep.Play(); // only works if users have sounds enabled
+                        // SystemSounds.Beep.Play(); // only works if users have sounds enabled
                     }
                     break;
             }

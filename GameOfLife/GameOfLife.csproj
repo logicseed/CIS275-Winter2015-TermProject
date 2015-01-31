@@ -49,15 +49,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>GameOfLife.Entry</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -124,10 +125,35 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Fonts\Roboto-Black.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-BlackItalic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-BoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Italic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Keys-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Keys-BoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Keys-Italic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Keys-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Light.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-LightItalic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-MediumItalic.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-Thin.ttf" />
+    <EmbeddedResource Include="Fonts\Roboto-ThinItalic.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-Bold.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-BoldItalic.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-Italic.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-Light.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-LightItalic.ttf" />
+    <EmbeddedResource Include="Fonts\RobotoCondensed-Regular.ttf" />
     <None Include="Resources\Splash.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -160,7 +160,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PRESS $ TO EXIT.
+        ///   Looks up a localized string similar to PRESS  TO EXIT.
         /// </summary>
         internal static string ExitConfirmation {
             get {
@@ -205,7 +205,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * - Start or Stop Autostepping.
+        ///   Looks up a localized string similar to  - Start or Stop Autostepping.
         /// </summary>
         internal static string HelpAutoStep {
             get {
@@ -223,7 +223,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ^+] - Decrease Cell Size.
+        ///   Looks up a localized string similar to  +  - Decrease Cell Size.
         /// </summary>
         internal static string HelpDecreaseCellSize {
             get {
@@ -232,7 +232,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt; - Decrease Columns.
+        ///   Looks up a localized string similar to  - Decrease Columns.
         /// </summary>
         internal static string HelpDecreaseColumns {
             get {
@@ -241,7 +241,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /+] - Decrease Life Chance.
+        ///   Looks up a localized string similar to  +  - Decrease Life Chance.
         /// </summary>
         internal static string HelpDecreaseLifeChance {
             get {
@@ -250,7 +250,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ] - Decrease Rows.
+        ///   Looks up a localized string similar to  - Decrease Rows.
         /// </summary>
         internal static string HelpDecreaseRows {
             get {
@@ -259,7 +259,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # - Reset Game.
+        ///   Looks up a localized string similar to  - Reset Game.
         /// </summary>
         internal static string HelpEndGame {
             get {
@@ -268,7 +268,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to $ - Exit Game.
+        ///   Looks up a localized string similar to  - Exit Game.
         /// </summary>
         internal static string HelpExitGame {
             get {
@@ -277,7 +277,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ^+[ - Increase Cell Size.
+        ///   Looks up a localized string similar to  +  - Increase Cell Size.
         /// </summary>
         internal static string HelpIncreaseCellSize {
             get {
@@ -286,7 +286,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt; - Increase Columns.
+        ///   Looks up a localized string similar to  - Increase Columns.
         /// </summary>
         internal static string HelpIncreaseColumns {
             get {
@@ -295,7 +295,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /+[ - Increase Life Chance.
+        ///   Looks up a localized string similar to  +  - Increase Life Chance.
         /// </summary>
         internal static string HelpIncreaseLifeChance {
             get {
@@ -304,7 +304,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [ - Increase Rows.
+        ///   Looks up a localized string similar to  - Increase Rows.
         /// </summary>
         internal static string HelpIncreaseRows {
             get {
@@ -322,7 +322,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _ - Step to Next Generation.
+        ///   Looks up a localized string similar to  - Step to Next Generation.
         /// </summary>
         internal static string HelpNextStep {
             get {
@@ -331,7 +331,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PRESS ? FOR HELP.
+        ///   Looks up a localized string similar to PRESS  FOR HELP.
         /// </summary>
         internal static string HelpPrompt {
             get {
@@ -340,7 +340,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp; - Show Credits.
+        ///   Looks up a localized string similar to  - Show Credits.
         /// </summary>
         internal static string HelpShowCredits {
             get {
@@ -354,6 +354,16 @@ namespace GameOfLife.Properties {
         internal static string HelpTitle {
             get {
                 return ResourceManager.GetString("HelpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icon {
+            get {
+                object obj = ResourceManager.GetObject("Icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

@@ -1,21 +1,20 @@
 ﻿/*
- * TODO
+ * The Game of Life - Marc King
+ * Programmed for CIS275 - Winter 2015
  * 
- * Cleanup usings
- * Refactor
- * Check for efficiency changes
+ * Styles.cs
  * 
- * IF TIME
- * 
- * make fonts embedded resources
+ * A static class that handles all the visual styles of the program. Such as
+ * the colors of various screen elements and the fonts of various text elements.
  * 
  */
-
 
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace GameOfLife
 {
@@ -82,7 +81,7 @@ namespace GameOfLife
             Color.FromArgb(206,215,219),  //  1 - Background
             Color.FromArgb(143,163,173),  //  2 - Darker Background
             Color.FromArgb(175,189,196),  //  3 - Cell Border
-            Color.FromArgb(150, 0, 0, 0)  //  4 - Black Shade
+            Color.FromArgb(100, 0, 0, 0)  //  4 - Black Shade
         };
 
         public static SolidBrush SplashScreenBackgroundColor = new SolidBrush(UIColor[2]);
@@ -106,6 +105,7 @@ namespace GameOfLife
         public static SolidBrush CreditsPopupTitleTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush CreditsPopupSectionTextColor = new SolidBrush(LifeColor[14]);
         public static SolidBrush CreditsPopupItemTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush PressAnyKeyTextColor = new SolidBrush(LifeColor[2]);
 
 
         public static int ElementMargin = 10;
@@ -117,7 +117,9 @@ namespace GameOfLife
         public static int PopupPadding = 20;
         public static int PopupSpacing = 5;
 
-        private static PrivateFontCollection CustomFonts;
+
+        public static PrivateFontCollection[] RobotoFontCollection;
+
         public static Font SplashScreenFont;
         public static Font HelpPromptFont;
         public static Font GenerationCountTitleFont;
@@ -134,146 +136,278 @@ namespace GameOfLife
         public static Font CreditsPopupSectionFont;
         public static Font CreditsPopupItemFont;
         public static Font PopupSpacerFont;
+        public static Font PressAnyKeyFont;
 
         public static Pen GridCellPen = new Pen(UIColor[3], 1);
         public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
 
+        private static FontFamily Roboto;
+        private static FontFamily RobotoThin;
+        private static FontFamily RobotoLight;
+        private static FontFamily RobotoMedium;
+        private static FontFamily RobotoBlack;
+        private static FontFamily RobotoCondensed;
+        private static FontFamily RobotoCondensedLight;
+        private static FontFamily RobotoKeys;
 
-        public static void Initialize(Form Parent)
+        public static void Initialize()
         {
-            CustomFonts = new PrivateFontCollection();
-
-            Stream FontStream = Parent.GetType().Assembly.GetManifestResourceStream("GameOfLife.GameOfLife-Regular.ttf");
-            byte[] FontData = new byte[FontStream.Length];
-            FontStream.Read(FontData, 0, (int)FontStream.Length);
-            FontStream.Close();
-            unsafe
-            {
-                fixed (byte* pFontData = FontData)
-                {
-                    CustomFonts.AddMemoryFont((System.IntPtr)pFontData, FontData.Length);
-                }
-            }
-            FontStream = Parent.GetType().Assembly.GetManifestResourceStream("GameOfLife.GameOfLife-Bold.ttf");
-            FontData = new byte[FontStream.Length];
-            FontStream.Read(FontData, 0, (int)FontStream.Length);
-            FontStream.Close();
-            unsafe
-            {
-                fixed (byte* pFontData = FontData)
-                {
-                    CustomFonts.AddMemoryFont((System.IntPtr)pFontData, FontData.Length);
-                }
-            }
-
-
-
-
-
-            // Load custom fonts.
-            //CustomFonts.AddFontFile("GameOfLife-Regular.ttf");
-            //CustomFonts.AddFontFile("GameOfLife-Bold.ttf");
-
+            InitializeRobotoFonts();
             InitializeFonts();
         }
 
         private static void InitializeFonts()
         {
+
             SplashScreenFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 16,
                 FontStyle.Bold
             );
 
             HelpPromptFont = new Font(
-                CustomFonts.Families[0],
+                RobotoKeys,
                 16,
                 FontStyle.Bold
             );
 
             GenerationCountTitleFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 20, 
                 FontStyle.Bold
             );
-            
+
             GenerationCountValueFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 20, 
                 FontStyle.Regular
             );
 
             GridSettingsTitleFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 14, 
                 FontStyle.Bold
             );
-            
+
             GridSettingsValueFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 14, 
                 FontStyle.Regular
             );
 
             HelpPopupTitleFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 16, 
                 FontStyle.Bold
             );
 
             HelpPopupSectionFont = new Font(
-                CustomFonts.Families[0], 
+                Roboto, 
                 12, 
                 FontStyle.Regular
             );
 
             HelpPopupItemFont = new Font(
-                CustomFonts.Families[0], 
+                RobotoKeys, 
                 14, 
                 FontStyle.Regular
             );
 
             ExitConfirmationTitleFont = new Font(
-                CustomFonts.Families[0],
+                RobotoKeys,
                 16,
                 FontStyle.Bold
             );
 
             ExitConfirmationSectionFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 12,
                 FontStyle.Regular
             );
 
             OutcomePopupFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 20,
                 FontStyle.Bold
             );
 
             CreditsPopupTitleFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 18,
                 FontStyle.Bold
             );
 
             CreditsPopupSectionFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 12,
                 FontStyle.Regular
             );
 
             CreditsPopupItemFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 14,
                 FontStyle.Bold
             );
 
             PopupSpacerFont = new Font(
-                CustomFonts.Families[0],
+                Roboto,
                 10,
                 FontStyle.Regular
             );
+
+            PressAnyKeyFont = new Font(
+                Roboto,
+                12,
+                FontStyle.Bold
+            );
+
         }
+
+        /// <summary>
+        /// Loads all the Roboto and custom Roboto fonts into memory and then
+        /// creates FontFamily objects for them.
+        /// </summary>
+        private static void InitializeRobotoFonts()
+        {
+            // Due to a limitation in PrivateFontCollection, we need to use
+            // an array from PrivateFontCollections in order to have consistent
+            // access to our font families.
+
+            // We plan to have eight font families.
+            RobotoFontCollection = new PrivateFontCollection[RobotoFamily.TotalFamilies];
+
+            // Variable to store the file names for each family.
+            string[] FontFiles;
+            
+            // Roboto
+            FontFiles = new string[] {
+                "Roboto-Regular.ttf",
+                "Roboto-Italic.ttf",
+                "Roboto-Bold.ttf",
+                "Roboto-BoldItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Regular] = LoadFontFamily(FontFiles);
+
+            // Roboto Thin
+            FontFiles = new string[] {
+                "Roboto-Thin.ttf",
+                "Roboto-ThinItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Thin] = LoadFontFamily(FontFiles);
+
+            // Roboto Light
+            FontFiles = new string[] {
+                "Roboto-Light.ttf",
+                "Roboto-LightItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Light] = LoadFontFamily(FontFiles);
+
+            // Roboto Medium
+            FontFiles = new string[] {
+                "Roboto-Medium.ttf",
+                "Roboto-MediumItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Medium] = LoadFontFamily(FontFiles);
+
+            // Roboto Black
+            FontFiles = new string[] {
+                "Roboto-Black.ttf",
+                "Roboto-BlackItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Black] = LoadFontFamily(FontFiles);
+
+            // Roboto Condensed
+            FontFiles = new string[] {
+                "RobotoCondensed-Regular.ttf",
+                "RobotoCondensed-Italic.ttf",
+                "RobotoCondensed-Bold.ttf",
+                "RobotoCondensed-BoldItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Condensed] = LoadFontFamily(FontFiles);
+
+            // Roboto Condensed Light
+            FontFiles = new string[] {
+                "RobotoCondensed-Light.ttf",
+                "RobotoCondensed-LightItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.CondensedLight] = LoadFontFamily(FontFiles);
+
+            // Roboto Keys
+            FontFiles = new string[] {
+                "Roboto-Keys-Regular.ttf",
+                "Roboto-Keys-Italic.ttf",
+                "Roboto-Keys-Bold.ttf",
+                "Roboto-Keys-BoldItalic.ttf"
+            };
+            RobotoFontCollection[RobotoFamily.Keys] = LoadFontFamily(FontFiles);
+
+            // Font Families
+            Roboto = RobotoFontCollection[RobotoFamily.Regular].Families[0];
+            RobotoThin = RobotoFontCollection[RobotoFamily.Thin].Families[0];
+            RobotoLight = RobotoFontCollection[RobotoFamily.Light].Families[0];
+            RobotoMedium = RobotoFontCollection[RobotoFamily.Medium].Families[0];
+            RobotoBlack = RobotoFontCollection[RobotoFamily.Black].Families[0];
+            RobotoCondensed = RobotoFontCollection[RobotoFamily.Condensed].Families[0];
+            RobotoCondensedLight = RobotoFontCollection[RobotoFamily.CondensedLight].Families[0];
+            RobotoKeys = RobotoFontCollection[RobotoFamily.Keys].Families[0];
+        }
+
+        /// <summary>
+        /// Will load a family of fonts and store them in a PrivateFontCollection
+        /// if they are located in the Fonts folder.
+        /// </summary>
+        /// <param name="FontFiles">An array of strings for the font files names.</param>
+        /// <returns>A PrivateFontCollection containing the loaded font family.</returns>
+        private static PrivateFontCollection LoadFontFamily(string[] FontFiles)
+        {
+            PrivateFontCollection FontCollection = new PrivateFontCollection();
+
+            for (int i = 0; i < FontFiles.Length; i++)
+            {
+                string FontFile = typeof(Program).Namespace + ".Fonts." + FontFiles[i];
+                Stream FontStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(FontFile);
+
+                // create an unsafe memory block for the font data
+                System.IntPtr Data = Marshal.AllocCoTaskMem((int)FontStream.Length);
+
+                // create a buffer to read in to
+                byte[] FontData = new byte[FontStream.Length];
+
+                // read the font data from the resource
+                FontStream.Read(FontData, 0, (int)FontStream.Length);
+
+                // copy the bytes to the unsafe memory block
+                Marshal.Copy(FontData, 0, Data, (int)FontStream.Length);
+
+                // pass the font to the font collection
+                FontCollection.AddMemoryFont(Data, (int)FontStream.Length);
+
+                // close the resource stream
+                FontStream.Close();
+
+                // free up the unsafe memory
+                Marshal.FreeCoTaskMem(Data);
+            }
+
+            return FontCollection;
+        }
+    }
+
+    /// <summary>
+    /// Used to easily reference the font families by name.
+    /// This static class is used to overcome a limitation in enum that will
+    /// not allow it to be automatically cast to an integer.
+    /// </summary>
+    internal static class RobotoFamily
+    {
+        public static int Regular         = 0;
+        public static int Thin            = 1;
+        public static int Light           = 2;
+        public static int Medium          = 3;
+        public static int Black           = 4;
+        public static int Condensed       = 5;
+        public static int CondensedLight  = 6;
+        public static int Keys            = 7;
+        public static int TotalFamilies   = 8;
     }
 }

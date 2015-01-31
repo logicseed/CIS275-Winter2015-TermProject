@@ -1,7 +1,17 @@
-﻿using System;
+﻿/*
+ * The Game of Life - Marc King
+ * Programmed for CIS275 - Winter 2015
+ * 
+ * Screen.cs
+ * 
+ * A static class that once initialized with a screen size will handle all the
+ * screen painting required to show the interface to the user.
+ * 
+ */
+
+using System;
 using System.Drawing;
 using System.Drawing.Text;
-
 
 namespace GameOfLife
 {
@@ -17,6 +27,9 @@ namespace GameOfLife
         private static Bitmap Buffer;
         private static Size BufferSize;
 
+        // Some of the measurement and positioning calculations could be
+        // resource intensive on some machines, so we want to avoid measuring
+        // and calculating positions when we don't have to.
         private static SizeF LogoSize;
         private static SizeF HelpPromptSize;
         private static SizeF GenerationCountSize;
@@ -37,6 +50,11 @@ namespace GameOfLife
         private static PointF LifeChanceValuePosition;
         private static PointF GridPosition;
 
+        // Measuring and positioning the grid is probably the most resource intensive
+        // of all of the measuring and positioning calculations, so we want to avoid
+        // performing it whenever we can. If there hasn't been any changes to the
+        // grid settings then we should always be able to use the same values as
+        // before.
         private static bool ValidGrid = false;
 
         /// <summary>
@@ -86,6 +104,9 @@ namespace GameOfLife
             // Draw a popup if one is being displayed.
             switch(State.Popup)
             {
+                case PopupState.Introduction:
+                    DrawIntroductionPopup();
+                    break;
                 case PopupState.Help:
                     DrawHelpPopup();
                     break;
@@ -103,6 +124,10 @@ namespace GameOfLife
             }
         }
 
+        /// <summary>
+        /// If something changes a grid setting them we need to know to perform
+        /// a recalculation of the grid's size and position.
+        /// </summary>
         public static void InvalidateGrid()
         {
             ValidGrid = false;
@@ -164,6 +189,7 @@ namespace GameOfLife
             SetDefaultGridSize();
 
             State.Screen = ScreenState.NoGame;
+            State.Popup = PopupState.Introduction;
             
             DrawMainScreen();
         }
@@ -482,12 +508,62 @@ namespace GameOfLife
         }
 
         /// <summary>
+        /// Builds the introduction popup data and then calls DrawPopup().
+        /// </summary>
+        private static void DrawIntroductionPopup()
+        {
+            // Build message array
+            PopupMessage[] Messages = new PopupMessage[11];
+            Messages[0].Text = Properties.Resources.CreditsTitle;
+            Messages[0].Style = Style.CreditsPopupTitleFont;
+            Messages[0].Color = Style.CreditsPopupTitleTextColor;
+            Messages[1].Text = "  ";
+            Messages[1].Style = Style.PopupSpacerFont;
+            Messages[1].Color = Style.PopupSpacerColor;
+            Messages[2].Text = Properties.Resources.CreditsGame;
+            Messages[2].Style = Style.CreditsPopupSectionFont;
+            Messages[2].Color = Style.CreditsPopupSectionTextColor;
+            Messages[3].Text = Properties.Resources.CreditsConway;
+            Messages[3].Style = Style.CreditsPopupItemFont;
+            Messages[3].Color = Style.CreditsPopupItemTextColor;
+            Messages[4].Text = "  ";
+            Messages[4].Style = Style.PopupSpacerFont;
+            Messages[4].Color = Style.PopupSpacerColor;
+            Messages[5].Text = Properties.Resources.CreditsProgramming;
+            Messages[5].Style = Style.CreditsPopupSectionFont;
+            Messages[5].Color = Style.CreditsPopupSectionTextColor;
+            Messages[6].Text = Properties.Resources.CreditsMarcKing;
+            Messages[6].Style = Style.CreditsPopupItemFont;
+            Messages[6].Color = Style.CreditsPopupItemTextColor;
+            Messages[7].Text = "  ";
+            Messages[7].Style = Style.PopupSpacerFont;
+            Messages[7].Color = Style.PopupSpacerColor;
+            Messages[8].Text = Properties.Resources.CreditsStyles;
+            Messages[8].Style = Style.CreditsPopupSectionFont;
+            Messages[8].Color = Style.CreditsPopupSectionTextColor;
+            Messages[9].Text = Properties.Resources.CreditsGoogle;
+            Messages[9].Style = Style.CreditsPopupItemFont;
+            Messages[9].Color = Style.CreditsPopupItemTextColor;
+            Messages[10].Text = Properties.Resources.CreditsModMarc;
+            Messages[10].Style = Style.CreditsPopupItemFont;
+            Messages[10].Color = Style.CreditsPopupItemTextColor;
+
+            // Specify alignments
+            Alignments Alignment = new Alignments();
+            Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.PopupVerticalAlignment = VerticalAlignment.Middle;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Center;
+
+            DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
+        }
+
+        /// <summary>
         /// Builds the help popup data and then calls DrawPopup().
         /// </summary>
         private static void DrawHelpPopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[16];
+            PopupMessage[] Messages = new PopupMessage[18];
             Messages[0].Text = Properties.Resources.HelpTitle;
             Messages[0].Style = Style.HelpPopupTitleFont;
             Messages[0].Color = Style.HelpPopupTitleTextColor;
@@ -536,6 +612,12 @@ namespace GameOfLife
             Messages[15].Text = Properties.Resources.HelpDecreaseLifeChance;
             Messages[15].Style = Style.HelpPopupItemFont;
             Messages[15].Color = Style.HelpPopupItemTextColor;
+            Messages[16].Text = " ";
+            Messages[16].Style = Style.PopupSpacerFont;
+            Messages[16].Color = Style.PopupSpacerColor;
+            Messages[17].Text = Properties.Resources.PressAnyKey;
+            Messages[17].Style = Style.PressAnyKeyFont;
+            Messages[17].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();
@@ -552,7 +634,7 @@ namespace GameOfLife
         private static void DrawCreditsPopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[11];
+            PopupMessage[] Messages = new PopupMessage[13];
             Messages[0].Text = Properties.Resources.CreditsTitle;
             Messages[0].Style = Style.CreditsPopupTitleFont;
             Messages[0].Color = Style.CreditsPopupTitleTextColor;
@@ -586,6 +668,12 @@ namespace GameOfLife
             Messages[10].Text = Properties.Resources.CreditsModMarc;
             Messages[10].Style = Style.CreditsPopupItemFont;
             Messages[10].Color = Style.CreditsPopupItemTextColor;
+            Messages[11].Text = " ";
+            Messages[11].Style = Style.PopupSpacerFont;
+            Messages[11].Color = Style.PopupSpacerColor;
+            Messages[12].Text = Properties.Resources.PressAnyKey;
+            Messages[12].Style = Style.PressAnyKeyFont;
+            Messages[12].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();
@@ -625,7 +713,7 @@ namespace GameOfLife
         private static void DrawOutcomePopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[1];
+            PopupMessage[] Messages = new PopupMessage[3];
             if (Life.Extinction)
             {
                 Messages[0].Text = Properties.Resources.GameExtinction;
@@ -637,6 +725,12 @@ namespace GameOfLife
                 Messages[0].Color = Style.OutcomePopupStabilizationTextColor;
             }
             Messages[0].Style = Style.OutcomePopupFont;
+            Messages[1].Text = " ";
+            Messages[1].Style = Style.PopupSpacerFont;
+            Messages[1].Color = Style.PopupSpacerColor;
+            Messages[2].Text = Properties.Resources.PressAnyKey;
+            Messages[2].Style = Style.PressAnyKeyFont;
+            Messages[2].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();
@@ -708,6 +802,9 @@ namespace GameOfLife
             }
         }
 
+        /// <summary>
+        /// Measures the grid that would result with the current grid settings.
+        /// </summary>
         private static void MeasureGrid()
         {
             // Calculate the size of the grid.
@@ -721,7 +818,7 @@ namespace GameOfLife
             // The grid position is based on the size of the screen.
             // We attempt to center the grid vertically and horizontally.
             // To overcome grid flickering due to anti-aliasing, we add
-            // 0.5f to each value; see Book2 page 32 for explanation.
+            // 0.5f to each value.
             GridPosition = new PointF(
                 (float)Math.Floor((BufferSize.Width - GridSize.Width) / 2.0f) + 0.5f,
                 (float)Math.Floor((BufferSize.Height - GridSize.Height) / 2.0f) + 0.5f
@@ -737,16 +834,16 @@ namespace GameOfLife
         private static void DrawLife()
         {
             // Draw life rectangles
-            for (int i = 1; i <= Setting.Rows; i++)
+            for (int i = 0; i < Setting.Rows; i++)
             {
-                for (int j = 1; j <= Setting.Columns; j++)
+                for (int j = 0; j < Setting.Columns; j++)
                 {
                     if (Life.GetCell(i, j) > 0)
                     {
                         Painter.FillRectangle(
                             Style.LifeBrush[Life.GetCell(i, j)],
-                            GridPosition.X + ((Setting.CellSize + 1) * (j - 1)),
-                            GridPosition.Y + ((Setting.CellSize + 1) * (i - 1)),
+                            GridPosition.X + ((Setting.CellSize + 1) * j),
+                            GridPosition.Y + ((Setting.CellSize + 1) * i),
                             Setting.CellSize, Setting.CellSize
                         );
                     }
@@ -894,6 +991,11 @@ namespace GameOfLife
             Bottom
         }
 
+        /// <summary>
+        /// Calculates the amount of space we have to draw a grid after fitting
+        /// all the other elements on the screen.
+        /// </summary>
+        /// <returns>The size of the space we have to draw the grid.</returns>
         private static Size CalculateGridSpace()
         {
             Size GridSpace = new Size(
@@ -911,18 +1013,33 @@ namespace GameOfLife
             return GridSpace;
         }
 
+        /// <summary>
+        /// Calculates the maximum number of rows we can fit in the current grid
+        /// space with the current cell size setting.
+        /// </summary>
+        /// <returns>The maximum number of rows that can fit in the grid space.</returns>
         public static int CalculateMaxRows()
         {
             int MaxRows = (CalculateGridSpace().Height - 1) / (Setting.CellSize + 1);
             return MaxRows;
         }
 
+        /// <summary>
+        /// Calculates the maximum number of columns we can fit in the current grid
+        /// space with the current cell size setting.
+        /// </summary>
+        /// <returns>The maximum number of columns that can fit in the grid space.</returns>
         public static int CalculateMaxColumns()
         {
             int MaxColumns = (CalculateGridSpace().Width - 1) / (Setting.CellSize + 1);
             return MaxColumns;
         }
 
+        /// <summary>
+        /// Calculates the maximum cell size we can fit in the current grid space
+        /// with the current rows and columns settings.
+        /// </summary>
+        /// <returns>The maximum pixel size of the cells that can fit in the grid space.</returns>
         public static int CalculateMaxCellSize()
         {
             int MaxCellSize = Math.Min(
@@ -932,12 +1049,20 @@ namespace GameOfLife
             return MaxCellSize;
         }
 
+        /// <summary>
+        /// Determines the default number of rows and columns based on our default
+        /// cell size of 20px.
+        /// </summary>
         private static void SetDefaultGridSize()
         {
             Setting.Rows = CalculateMaxRows();
             Setting.Columns = CalculateMaxColumns();
         }
 
+        /// <summary>
+        /// Maximizes the grid in regards to rows and columns.
+        /// DEVELOPER ONLY
+        /// </summary>
         public static void MaximizeGridSize()
         {
             Setting.CellSize = 5;
@@ -946,6 +1071,11 @@ namespace GameOfLife
             ValidGrid = false;
         }
 
+        /// <summary>
+        /// Sets a very large cell size and them fits as many rows and columns
+        /// as possible on the screen.
+        /// DEVELOPER ONLY
+        /// </summary>
         public static void MinimizeGridSize()
         {
             Setting.CellSize = 100;

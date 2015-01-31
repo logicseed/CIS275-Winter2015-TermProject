@@ -1,10 +1,14 @@
 ﻿/*
- * TODO
+ * The Game of Life - Marc King
+ * Programmed for CIS275 - Winter 2015
  * 
- * integrate graphics states
+ * States.cs
+ * 
+ * A static class that manages the various screen and popup states of the
+ * program. These are used by Program to handle program flow, and by Screen
+ * to handle the painting of screen elements.
  * 
  */
-
 
 namespace GameOfLife
 {
@@ -68,6 +72,10 @@ namespace GameOfLife
         /// The program is not displaying a popup.
         /// </summary>
         None,
+        /// <summary>
+        /// The game outcome popup is being displayed.
+        /// </summary>
+        Introduction,
         /// <summary>
         /// The help popup is being displayed.
         /// </summary>

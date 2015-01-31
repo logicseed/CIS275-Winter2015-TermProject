@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="SplashScreen" xml:space="preserve">
     <value>PRESS ANY KEY TO CONTINUE</value>
@@ -124,12 +124,12 @@
     <value>PRESS ANY OTHER KEY TO CONTINUE</value>
   </data>
   <data name="ExitConfirmation" xml:space="preserve">
-    <value>PRESS $ TO EXIT</value>
+    <value>PRESS  TO EXIT</value>
   </data>
   <data name="HelpPrompt" xml:space="preserve">
-    <value>PRESS ? FOR HELP</value>
+    <value>PRESS  FOR HELP</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -164,49 +164,49 @@
     <value>STABILIZATION!</value>
   </data>
   <data name="HelpAutoStep" xml:space="preserve">
-    <value>* - Start or Stop Autostepping</value>
+    <value> - Start or Stop Autostepping</value>
   </data>
   <data name="HelpBeforeGame" xml:space="preserve">
     <value>BEFORE GAME</value>
   </data>
   <data name="HelpDecreaseCellSize" xml:space="preserve">
-    <value>^+] - Decrease Cell Size</value>
+    <value> +  - Decrease Cell Size</value>
   </data>
   <data name="HelpDecreaseColumns" xml:space="preserve">
-    <value>&lt; - Decrease Columns</value>
+    <value> - Decrease Columns</value>
   </data>
   <data name="HelpDecreaseLifeChance" xml:space="preserve">
-    <value>/+] - Decrease Life Chance</value>
+    <value> +  - Decrease Life Chance</value>
   </data>
   <data name="HelpDecreaseRows" xml:space="preserve">
-    <value>] - Decrease Rows</value>
+    <value> - Decrease Rows</value>
   </data>
   <data name="HelpEndGame" xml:space="preserve">
-    <value># - Reset Game</value>
+    <value> - Reset Game</value>
   </data>
   <data name="HelpExitGame" xml:space="preserve">
-    <value>$ - Exit Game</value>
+    <value> - Exit Game</value>
   </data>
   <data name="HelpIncreaseCellSize" xml:space="preserve">
-    <value>^+[ - Increase Cell Size</value>
+    <value> +  - Increase Cell Size</value>
   </data>
   <data name="HelpIncreaseColumns" xml:space="preserve">
-    <value>&gt; - Increase Columns</value>
+    <value> - Increase Columns</value>
   </data>
   <data name="HelpIncreaseLifeChance" xml:space="preserve">
-    <value>/+[ - Increase Life Chance</value>
+    <value> +  - Increase Life Chance</value>
   </data>
   <data name="HelpIncreaseRows" xml:space="preserve">
-    <value>[ - Increase Rows</value>
+    <value> - Increase Rows</value>
   </data>
   <data name="HelpMainControls" xml:space="preserve">
     <value>MAIN CONTROLS</value>
   </data>
   <data name="HelpNextStep" xml:space="preserve">
-    <value>_ - Step to Next Generation</value>
+    <value> - Step to Next Generation</value>
   </data>
   <data name="HelpShowCredits" xml:space="preserve">
-    <value>&amp; - Show Credits</value>
+    <value> - Show Credits</value>
   </data>
   <data name="HelpTitle" xml:space="preserve">
     <value>GAME OF LIFE HELP</value>
@@ -240,5 +240,8 @@
   </data>
   <data name="CreditsTitle" xml:space="preserve">
     <value>GAME OF LIFE CREDITS</value>
+  </data>
+  <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
