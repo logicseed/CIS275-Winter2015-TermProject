@@ -169,7 +169,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EXTINCTION!.
+        ///   Looks up a localized string similar to EXTINCTION EVENT.
         /// </summary>
         internal static string GameExtinction {
             get {
@@ -178,7 +178,16 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to STABILIZATION!.
+        ///   Looks up a localized string similar to OSCILLATION OCCURING.
+        /// </summary>
+        internal static string GameOscillation {
+            get {
+                return ResourceManager.GetString("GameOscillation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STABILIZATION REACHED.
         /// </summary>
         internal static string GameStabilization {
             get {

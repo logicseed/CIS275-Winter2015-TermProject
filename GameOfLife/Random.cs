@@ -1,10 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Random.cs
+ * The Game of Life
  * 
- * Allows static access to the System.Random class.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 

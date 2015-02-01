@@ -1,12 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * States.cs
+ * The Game of Life
  * 
- * A static class that manages the various screen and popup states of the
- * program. These are used by Program to handle program flow, and by Screen
- * to handle the painting of screen elements.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 

@@ -1,10 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Life.cs
+ * The Game of Life
  * 
- * A static class that handles all the Life aspects of the program.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 
@@ -18,10 +16,12 @@ namespace GameOfLife
         // The matrices used to hold the life data.
         private static byte[,] CurrentGrid;
         private static byte[,] NextGrid;
+        private static byte[,] PreviousGrid;
 
         // Two potential end-game states.
         public static bool Stabilization = false;
         public static bool Extinction = false;
+        public static bool Oscillation = false;
 
         // Keeps track of the game state, the rules may end the game on the user.
         public static bool GameRunning = false;
@@ -94,6 +94,7 @@ namespace GameOfLife
             // and creating two new ones.
             CurrentGrid = new byte[Rows, Columns];
             NextGrid = new byte[Rows, Columns];
+            PreviousGrid = new byte[Rows, Columns];
 
             CurrentGeneration = 0;
         }
@@ -158,19 +159,28 @@ namespace GameOfLife
 
             CurrentGeneration++;
 
-            // Compare matrices to check for stabilization or extinction.
+            // Compare matrices to check for stabilization, extinction, or oscillation.
             Extinction = CheckExtinction();
 
             if (!Extinction)
             {
                 Stabilization = CompareGrids(CurrentGrid, NextGrid);
-                if (Stabilization) GameRunning = false;
+                if (Stabilization)
+                {
+                    GameRunning = false;
+                }
+                else
+                {
+                    Oscillation = CompareGrids(PreviousGrid, NextGrid);
+                    if (Oscillation) GameRunning = false;
+                }
             }
             else
             {
                 GameRunning = false;
             }
 
+            PreviousGrid = CurrentGrid;
             CurrentGrid = NextGrid;
         }
 
@@ -251,7 +261,7 @@ namespace GameOfLife
             {
                 for (int j = 1; j < Columns - 1; j++)
                 {
-                    if (FirstGrid[i, j] != SecondGrid[i, j])
+                    if ((FirstGrid[i, j] > 0) != (SecondGrid[i, j] > 0))
                     {
                         return false;
                     }

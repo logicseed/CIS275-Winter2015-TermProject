@@ -1,17 +1,8 @@
-﻿/* 
+﻿/*
  * 
+ * The Game of Life
  * 
- */
-
-/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
- * 
- * Program.cs
- * 
- * The main part of the Program class. Handles initializing the Windows form, 
- * and the various static classes used by the program. Also controls most of
- * the program flow.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 
@@ -221,6 +212,12 @@ namespace GameOfLife
             else
             {
                 Life.Next();
+            }
+            
+            if(!Life.GameRunning)
+            {
+                ShowOutcomePopup();
+                this.Invalidate();
             }
         }
 

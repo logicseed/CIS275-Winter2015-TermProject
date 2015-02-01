@@ -1,11 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Styles.cs
+ * The Game of Life
  * 
- * A static class that handles all the visual styles of the program. Such as
- * the colors of various screen elements and the fonts of various text elements.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 
@@ -102,6 +99,7 @@ namespace GameOfLife
         public static SolidBrush ExitConfirmationSectionTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush OutcomePopupExtinctionTextColor = new SolidBrush(LifeColor[15]);
         public static SolidBrush OutcomePopupStabilizationTextColor = new SolidBrush(LifeColor[8]);
+        public static SolidBrush OutcomePopupOscillationTextColor = new SolidBrush(LifeColor[3]);
         public static SolidBrush CreditsPopupTitleTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush CreditsPopupSectionTextColor = new SolidBrush(LifeColor[14]);
         public static SolidBrush CreditsPopupItemTextColor = new SolidBrush(UIColor[0]);
@@ -160,7 +158,7 @@ namespace GameOfLife
         {
 
             SplashScreenFont = new Font(
-                Roboto,
+                RobotoBlack,
                 16,
                 FontStyle.Bold
             );
@@ -172,25 +170,25 @@ namespace GameOfLife
             );
 
             GenerationCountTitleFont = new Font(
-                Roboto, 
+                RobotoCondensed, 
                 20, 
                 FontStyle.Bold
             );
 
             GenerationCountValueFont = new Font(
-                Roboto, 
+                RobotoCondensed, 
                 20, 
                 FontStyle.Regular
             );
 
             GridSettingsTitleFont = new Font(
-                Roboto, 
+                RobotoCondensed, 
                 14, 
                 FontStyle.Bold
             );
 
             GridSettingsValueFont = new Font(
-                Roboto, 
+                RobotoCondensed, 
                 14, 
                 FontStyle.Regular
             );
@@ -220,7 +218,7 @@ namespace GameOfLife
             );
 
             ExitConfirmationSectionFont = new Font(
-                Roboto,
+                RobotoBlack,
                 12,
                 FontStyle.Regular
             );
@@ -256,7 +254,7 @@ namespace GameOfLife
             );
 
             PressAnyKeyFont = new Font(
-                Roboto,
+                RobotoBlack,
                 12,
                 FontStyle.Bold
             );

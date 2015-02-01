@@ -1,11 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Settings.cs
+ * The Game of Life
  * 
- * A static class that stores various program settings that are available
- * to all the classes making up the program.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 

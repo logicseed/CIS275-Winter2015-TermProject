@@ -1,11 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Screen.cs
+ * The Game of Life
  * 
- * A static class that once initialized with a screen size will handle all the
- * screen painting required to show the interface to the user.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 
@@ -713,7 +710,7 @@ namespace GameOfLife
         private static void DrawOutcomePopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[3];
+            PopupMessage[] Messages = new PopupMessage[2];
             if (Life.Extinction)
             {
                 Messages[0].Text = Properties.Resources.GameExtinction;
@@ -724,13 +721,15 @@ namespace GameOfLife
                 Messages[0].Text = Properties.Resources.GameStabilization;
                 Messages[0].Color = Style.OutcomePopupStabilizationTextColor;
             }
+            else
+            {
+                Messages[0].Text = Properties.Resources.GameOscillation;
+                Messages[0].Color = Style.OutcomePopupOscillationTextColor;
+            }
             Messages[0].Style = Style.OutcomePopupFont;
-            Messages[1].Text = " ";
-            Messages[1].Style = Style.PopupSpacerFont;
-            Messages[1].Color = Style.PopupSpacerColor;
-            Messages[2].Text = Properties.Resources.PressAnyKey;
-            Messages[2].Style = Style.PressAnyKeyFont;
-            Messages[2].Color = Style.PressAnyKeyTextColor;
+            Messages[1].Text = Properties.Resources.PressAnyKey;
+            Messages[1].Style = Style.PressAnyKeyFont;
+            Messages[1].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();

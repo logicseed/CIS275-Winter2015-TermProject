@@ -158,10 +158,10 @@
     <value>ROWS: </value>
   </data>
   <data name="GameExtinction" xml:space="preserve">
-    <value>EXTINCTION!</value>
+    <value>EXTINCTION EVENT</value>
   </data>
   <data name="GameStabilization" xml:space="preserve">
-    <value>STABILIZATION!</value>
+    <value>STABILIZATION REACHED</value>
   </data>
   <data name="HelpAutoStep" xml:space="preserve">
     <value> - Start or Stop Autostepping</value>
@@ -243,5 +243,8 @@
   </data>
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GameOscillation" xml:space="preserve">
+    <value>OSCILLATION OCCURING</value>
   </data>
 </root>

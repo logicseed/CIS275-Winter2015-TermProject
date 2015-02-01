@@ -1,11 +1,8 @@
 ﻿/*
- * The Game of Life - Marc King
- * Programmed for CIS275 - Winter 2015
  * 
- * Keys.cs
+ * The Game of Life
  * 
- * A part of the Program class that contains all the code used to handle key
- * presses by the user.
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
  * 
  */
 
@@ -233,6 +230,9 @@ namespace GameOfLife
                     goto default;
                 // Developer-Only Keys END
 
+                // Used to ignore the Print Screen button when taking screen
+                // shots for the report.
+                case Keys.PrintScreen: break;
 
                 default:
                     // Any other key that is pressed will close the splash screen,
