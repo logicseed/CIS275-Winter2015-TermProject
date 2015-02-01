@@ -17,6 +17,28 @@ namespace GameOfLife
 {
     internal static class Style
     {
+
+        // Various values used through the program.
+        public static int ElementMargin = 10;
+        public static int ElementSpacing = 5;
+        public static int TextMargin = 20;
+        public static int TextPadding = 10;
+        public static int TextSpacing = 10;
+        public static int PopupMargin = 0;
+        public static int PopupPadding = 20;
+        public static int PopupSpacing = 5;
+
+        /// <summary>
+        /// Initializes the Style class for use in the program.
+        /// </summary>
+        public static void Initialize()
+        {
+            InitializeRobotoFonts();
+            InitializeFonts();
+        }
+
+        #region Colors
+
         /// <summary>
         /// This is an array to store the colors for the various types of
         /// life. Although the names may sound similar to colors that are
@@ -103,18 +125,18 @@ namespace GameOfLife
         public static SolidBrush CreditsPopupTitleTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush CreditsPopupSectionTextColor = new SolidBrush(LifeColor[14]);
         public static SolidBrush CreditsPopupItemTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush IntroductionPopupTitleTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush IntroductionPopupItemTextColor = new SolidBrush(UIColor[0]);
+        public static SolidBrush IntroductionArrowTextColor = new SolidBrush(LifeColor[12]);
         public static SolidBrush PressAnyKeyTextColor = new SolidBrush(LifeColor[2]);
 
+        public static Pen GridCellPen = new Pen(UIColor[3], 1);
+        public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
 
-        public static int ElementMargin = 10;
-        public static int ElementSpacing = 5;
-        public static int TextMargin = 20;
-        public static int TextPadding = 10;
-        public static int TextSpacing = 10;
-        public static int PopupMargin = 0;
-        public static int PopupPadding = 20;
-        public static int PopupSpacing = 5;
+        #endregion Colors
 
+
+        #region Fonts
 
         public static PrivateFontCollection[] RobotoFontCollection;
 
@@ -133,11 +155,13 @@ namespace GameOfLife
         public static Font CreditsPopupTitleFont;
         public static Font CreditsPopupSectionFont;
         public static Font CreditsPopupItemFont;
+        public static Font IntroductionPopupTitleFont;
+        public static Font IntroductionPopupItemFont;
+        public static Font IntroductionArrowTextFont;
         public static Font PopupSpacerFont;
         public static Font PressAnyKeyFont;
 
-        public static Pen GridCellPen = new Pen(UIColor[3], 1);
-        public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
+
 
         private static FontFamily Roboto;
         private static FontFamily RobotoThin;
@@ -148,11 +172,7 @@ namespace GameOfLife
         private static FontFamily RobotoCondensedLight;
         private static FontFamily RobotoKeys;
 
-        public static void Initialize()
-        {
-            InitializeRobotoFonts();
-            InitializeFonts();
-        }
+
 
         private static void InitializeFonts()
         {
@@ -245,6 +265,24 @@ namespace GameOfLife
                 Roboto,
                 14,
                 FontStyle.Bold
+            );
+
+            IntroductionPopupTitleFont = new Font(
+                Roboto,
+                18,
+                FontStyle.Bold
+            );
+
+            IntroductionPopupItemFont = new Font(
+                Roboto,
+                14,
+                FontStyle.Regular
+            );
+
+            IntroductionArrowTextFont = new Font(
+                RobotoBlack,
+                16,
+                FontStyle.Regular
             );
 
             PopupSpacerFont = new Font(
@@ -389,23 +427,28 @@ namespace GameOfLife
 
             return FontCollection;
         }
+
+        /// <summary>
+        /// Used to easily reference the font families by name.
+        /// This static class is used to overcome a limitation in enum that will
+        /// not allow it to be automatically cast to an integer.
+        /// </summary>
+        internal static class RobotoFamily
+        {
+            public static int Regular = 0;
+            public static int Thin = 1;
+            public static int Light = 2;
+            public static int Medium = 3;
+            public static int Black = 4;
+            public static int Condensed = 5;
+            public static int CondensedLight = 6;
+            public static int Keys = 7;
+            public static int TotalFamilies = 8;
+        }
+
+        #endregion Fonts
+
     }
 
-    /// <summary>
-    /// Used to easily reference the font families by name.
-    /// This static class is used to overcome a limitation in enum that will
-    /// not allow it to be automatically cast to an integer.
-    /// </summary>
-    internal static class RobotoFamily
-    {
-        public static int Regular         = 0;
-        public static int Thin            = 1;
-        public static int Light           = 2;
-        public static int Medium          = 3;
-        public static int Black           = 4;
-        public static int Condensed       = 5;
-        public static int CondensedLight  = 6;
-        public static int Keys            = 7;
-        public static int TotalFamilies   = 8;
-    }
+    
 }

@@ -510,48 +510,83 @@ namespace GameOfLife
         private static void DrawIntroductionPopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[11];
-            Messages[0].Text = Properties.Resources.CreditsTitle;
-            Messages[0].Style = Style.CreditsPopupTitleFont;
-            Messages[0].Color = Style.CreditsPopupTitleTextColor;
+            PopupMessage[] Messages = new PopupMessage[7];
+            Messages[0].Text = Properties.Resources.IntroductionTitle;
+            Messages[0].Style = Style.IntroductionPopupTitleFont;
+            Messages[0].Color = Style.IntroductionPopupTitleTextColor;
             Messages[1].Text = "  ";
             Messages[1].Style = Style.PopupSpacerFont;
             Messages[1].Color = Style.PopupSpacerColor;
-            Messages[2].Text = Properties.Resources.CreditsGame;
-            Messages[2].Style = Style.CreditsPopupSectionFont;
-            Messages[2].Color = Style.CreditsPopupSectionTextColor;
-            Messages[3].Text = Properties.Resources.CreditsConway;
-            Messages[3].Style = Style.CreditsPopupItemFont;
-            Messages[3].Color = Style.CreditsPopupItemTextColor;
-            Messages[4].Text = "  ";
-            Messages[4].Style = Style.PopupSpacerFont;
-            Messages[4].Color = Style.PopupSpacerColor;
-            Messages[5].Text = Properties.Resources.CreditsProgramming;
-            Messages[5].Style = Style.CreditsPopupSectionFont;
-            Messages[5].Color = Style.CreditsPopupSectionTextColor;
-            Messages[6].Text = Properties.Resources.CreditsMarcKing;
-            Messages[6].Style = Style.CreditsPopupItemFont;
-            Messages[6].Color = Style.CreditsPopupItemTextColor;
-            Messages[7].Text = "  ";
-            Messages[7].Style = Style.PopupSpacerFont;
-            Messages[7].Color = Style.PopupSpacerColor;
-            Messages[8].Text = Properties.Resources.CreditsStyles;
-            Messages[8].Style = Style.CreditsPopupSectionFont;
-            Messages[8].Color = Style.CreditsPopupSectionTextColor;
-            Messages[9].Text = Properties.Resources.CreditsGoogle;
-            Messages[9].Style = Style.CreditsPopupItemFont;
-            Messages[9].Color = Style.CreditsPopupItemTextColor;
-            Messages[10].Text = Properties.Resources.CreditsModMarc;
-            Messages[10].Style = Style.CreditsPopupItemFont;
-            Messages[10].Color = Style.CreditsPopupItemTextColor;
+            Messages[2].Text = Properties.Resources.IntroductionTextMain;
+            Messages[2].Style = Style.IntroductionPopupItemFont;
+            Messages[2].Color = Style.IntroductionPopupItemTextColor;
+            Messages[3].Text = "  ";
+            Messages[3].Style = Style.PopupSpacerFont;
+            Messages[3].Color = Style.PopupSpacerColor;
+            Messages[4].Text = Properties.Resources.IntroductionTextTip;
+            Messages[4].Style = Style.IntroductionPopupItemFont;
+            Messages[4].Color = Style.IntroductionPopupItemTextColor;
+            Messages[5].Text = "  ";
+            Messages[5].Style = Style.PopupSpacerFont;
+            Messages[5].Color = Style.PopupSpacerColor;
+            Messages[6].Text = Properties.Resources.PressAnyKey;
+            Messages[6].Style = Style.PressAnyKeyFont;
+            Messages[6].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();
             Alignment.PopupHorizontalAlignment = HorizontalAlignment.Center;
             Alignment.PopupVerticalAlignment = VerticalAlignment.Middle;
-            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Center;
+            Alignment.MessageHorizontalAlignment = HorizontalAlignment.Left;
 
             DrawPopup(Messages, Alignment, Style.PopupPadding, Style.PopupSpacing);
+
+            // Draw arrows and text
+
+            // Generation Count
+            Bitmap ArrowDL = new Bitmap(Properties.Resources.ArrowDL);
+            PointF GenerationCountArrowPosition = new PointF(
+                GenerationCountSize.Width / 2, 
+                (BufferSize.Height - GenerationCountSize.Height) - 75
+            );
+            Painter.DrawImage(ArrowDL, GenerationCountArrowPosition);
+            ArrowDL.Dispose();
+            SizeF GenerationCountArrowTextSize = Painter.MeasureString(
+                Properties.Resources.IntroductionGenerationCount, Style.IntroductionArrowTextFont);
+            Painter.DrawString(
+                Properties.Resources.IntroductionGenerationCount,
+                Style.IntroductionArrowTextFont,
+                Style.IntroductionArrowTextColor,
+                GenerationCountArrowPosition.X,
+                GenerationCountArrowPosition.Y - (GenerationCountArrowTextSize.Height / 2)
+            );
+
+            // Grid Settings
+            Bitmap ArrowDR = new Bitmap(Properties.Resources.ArrowDR);
+            PointF GridSettingsArrowPosition = new PointF(
+                BufferSize.Width - (GridSettingsSize.Width) + 100, 
+                (BufferSize.Height - GridSettingsSize.Height) - 85
+            );
+            Painter.DrawImage(ArrowDR, GridSettingsArrowPosition);
+            SizeF GridSettingsArrowTextSize = Painter.MeasureString(
+                Properties.Resources.IntroductionGridSettings, Style.IntroductionArrowTextFont);
+            Painter.DrawString(
+                Properties.Resources.IntroductionGridSettings,
+                Style.IntroductionArrowTextFont,
+                Style.IntroductionArrowTextColor,
+                (GridSettingsArrowPosition.X + ArrowDR.Width) - GenerationCountArrowTextSize.Width,
+                GridSettingsArrowPosition.Y - (GenerationCountArrowTextSize.Height / 2)
+            );
+            ArrowDR.Dispose();
+
+            // Help Prompt
+            Bitmap ArrowUR = new Bitmap(Properties.Resources.ArrowUR);
+            PointF HelpPromptArrowPosition = new PointF(
+                BufferSize.Width - (HelpPromptSize.Width),
+                HelpPromptSize.Height
+            );
+            Painter.DrawImage(ArrowUR, HelpPromptArrowPosition);
+            ArrowUR.Dispose();
         }
 
         /// <summary>
@@ -856,9 +891,11 @@ namespace GameOfLife
         /// </summary>
         /// <param name="Messages">An array of messages displayed in the popup.</param>
         /// <param name="PopupAlignment">Where the popup will be drawn.</param>
-        /// <param name="MessageMargin">The margin between the messages and the edge of the popup.</param>
+        /// <param name="MessageMargin">The margin between the messages and the edge of 
+        /// the popup.</param>
         /// <param name="MessageSpacing">The space between each individual message.</param>
-        private static void DrawPopup(PopupMessage[] Messages, Alignments PopupAlignment, float MessageMargin, float MessageSpacing)
+        private static void DrawPopup(PopupMessage[] Messages, Alignments PopupAlignment, 
+            float MessageMargin, float MessageSpacing)
         {
             SizeF[] MessageSize = new SizeF[Messages.Length];
             SizeF TotalMessageSize = new SizeF();
@@ -869,7 +906,7 @@ namespace GameOfLife
             // Calculate sizes of all the messages and total size of all the messages.
             for (int i = 0; i < Messages.Length; i++)
             {
-                MessageSize[i] = Painter.MeasureString(Messages[i].Text, Messages[i].Style);
+                MessageSize[i] = Painter.MeasureString(Messages[i].Text, Messages[i].Style, BufferSize.Width / 3);
                 TotalMessageSize.Width = Math.Max(MessageSize[i].Width, TotalMessageSize.Width);
                 TotalMessageSize.Height += MessageSize[i].Height;
             }
@@ -956,11 +993,30 @@ namespace GameOfLife
             // DrawGrid messages
             for (int i = 0; i < Messages.Length; i++)
             {
-                Painter.DrawString(
-                    Messages[i].Text,
-                    Messages[i].Style,
-                    Messages[i].Color,
-                    MessagePosition[i]);
+                if (Painter.MeasureString(
+                        Messages[i].Text,
+                        Messages[i].Style
+                    ).Width > BufferSize.Width / 3)
+                {
+                    Painter.DrawString(
+                        Messages[i].Text,
+                        Messages[i].Style,
+                        Messages[i].Color,
+                        new RectangleF(
+                            MessagePosition[i],
+                            MessageSize[i]
+                        )
+                    );
+                }
+                else
+                {
+                    Painter.DrawString(
+                        Messages[i].Text,
+                        Messages[i].Style,
+                        Messages[i].Color,
+                        MessagePosition[i]
+                    );
+                }
             }
         }
         // Used to build popups using DrawPopup()
