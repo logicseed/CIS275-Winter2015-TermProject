@@ -244,7 +244,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  - Start or Stop Autostepping.
+        ///   Looks up a localized string similar to  - Start/Stop Autostepping.
         /// </summary>
         internal static string HelpAutoStep {
             get {
@@ -253,7 +253,7 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BEFORE GAME.
+        ///   Looks up a localized string similar to GRID SETTINGS.
         /// </summary>
         internal static string HelpBeforeGame {
             get {
@@ -425,11 +425,65 @@ namespace GameOfLife.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Game of Life is a cellular automaton created by John Horton Conway in 1970. In this version of Conway’s Game of Life, you begin by adjusting the GRID SETTINGS and then starting a game. You may manually step through generations or have the program auto-step through generations for you. At any point during a game you can switch between manual stepping and auto-stepping. Once a game has been started the GENERATION COUNT will keep track of which generation your grid is displaying. When your game reaches a c [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to HELP.
         /// </summary>
-        internal static string IntroductionTextMain {
+        internal static string IntroductionHelpPrompt {
             get {
-                return ResourceManager.GetString("IntroductionTextMain", resourceCulture);
+                return ResourceManager.GetString("IntroductionHelpPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     1. Any live cell with fewer than two live neighbours dies, as if caused by under-population..
+        /// </summary>
+        internal static string IntroductionRule1 {
+            get {
+                return ResourceManager.GetString("IntroductionRule1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     2. Any live cell with two or three live neighbours lives on to the next generation..
+        /// </summary>
+        internal static string IntroductionRule2 {
+            get {
+                return ResourceManager.GetString("IntroductionRule2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     3. Any live cell with more than three live neighbours dies, as if by overcrowding..
+        /// </summary>
+        internal static string IntroductionRule3 {
+            get {
+                return ResourceManager.GetString("IntroductionRule3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to     4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction..
+        /// </summary>
+        internal static string IntroductionRule4 {
+            get {
+                return ResourceManager.GetString("IntroductionRule4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Game of Life is a cellular automaton created by John Horton Conway in 1970. When a game begins the grid is filled randomly with life. Upon each successive generation, each cell must adhere to the following rules:.
+        /// </summary>
+        internal static string IntroductionTextMain1 {
+            get {
+                return ResourceManager.GetString("IntroductionTextMain1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To play the game all you need to do is start stepping, or auto-stepping, through generations. The current generation will be displayed by the GENERATION COUNT. When the game comes to an end, one of three outcomes will be displayed. If you would like more control over the game, you can adjust the GRID SETTINGS (including rows, columns, cell size, and initial life chance) prior to starting a game..
+        /// </summary>
+        internal static string IntroductionTextMain2 {
+            get {
+                return ResourceManager.GetString("IntroductionTextMain2", resourceCulture);
             }
         }
         

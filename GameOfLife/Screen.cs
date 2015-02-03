@@ -612,28 +612,49 @@ namespace GameOfLife
         private static void DrawIntroductionPopup()
         {
             // Build message array
-            PopupMessage[] Messages = new PopupMessage[7];
+            PopupMessage[] Messages = new PopupMessage[14];
             Messages[0].Text = Properties.Resources.IntroductionTitle;
             Messages[0].Style = Style.IntroductionPopupTitleFont;
             Messages[0].Color = Style.IntroductionPopupTitleTextColor;
             Messages[1].Text = "  ";
             Messages[1].Style = Style.PopupSpacerFont;
             Messages[1].Color = Style.PopupSpacerColor;
-            Messages[2].Text = Properties.Resources.IntroductionTextMain;
+            Messages[2].Text = Properties.Resources.IntroductionTextMain1;
             Messages[2].Style = Style.IntroductionPopupItemFont;
             Messages[2].Color = Style.IntroductionPopupItemTextColor;
             Messages[3].Text = "  ";
             Messages[3].Style = Style.PopupSpacerFont;
             Messages[3].Color = Style.PopupSpacerColor;
-            Messages[4].Text = Properties.Resources.IntroductionTextTip;
+            Messages[4].Text = Properties.Resources.IntroductionRule1;
             Messages[4].Style = Style.IntroductionPopupItemFont;
             Messages[4].Color = Style.IntroductionPopupItemTextColor;
-            Messages[5].Text = "  ";
-            Messages[5].Style = Style.PopupSpacerFont;
-            Messages[5].Color = Style.PopupSpacerColor;
-            Messages[6].Text = Properties.Resources.PressAnyKey;
-            Messages[6].Style = Style.PressAnyKeyFont;
-            Messages[6].Color = Style.PressAnyKeyTextColor;
+            Messages[5].Text = Properties.Resources.IntroductionRule2;
+            Messages[5].Style = Style.IntroductionPopupItemFont;
+            Messages[5].Color = Style.IntroductionPopupItemTextColor;
+            Messages[6].Text = Properties.Resources.IntroductionRule3;
+            Messages[6].Style = Style.IntroductionPopupItemFont;
+            Messages[6].Color = Style.IntroductionPopupItemTextColor;
+            Messages[7].Text = Properties.Resources.IntroductionRule4;
+            Messages[7].Style = Style.IntroductionPopupItemFont;
+            Messages[7].Color = Style.IntroductionPopupItemTextColor;
+            Messages[8].Text = "  ";
+            Messages[8].Style = Style.PopupSpacerFont;
+            Messages[8].Color = Style.PopupSpacerColor;
+            Messages[9].Text = Properties.Resources.IntroductionTextMain2;
+            Messages[9].Style = Style.IntroductionPopupItemFont;
+            Messages[9].Color = Style.IntroductionPopupItemTextColor;
+            Messages[10].Text = "  ";
+            Messages[10].Style = Style.PopupSpacerFont;
+            Messages[10].Color = Style.PopupSpacerColor;
+            Messages[11].Text = Properties.Resources.IntroductionTextTip;
+            Messages[11].Style = Style.IntroductionPopupItemFont;
+            Messages[11].Color = Style.IntroductionPopupItemTextColor;
+            Messages[12].Text = "  ";
+            Messages[12].Style = Style.PopupSpacerFont;
+            Messages[12].Color = Style.PopupSpacerColor;
+            Messages[13].Text = Properties.Resources.PressAnyKey;
+            Messages[13].Style = Style.PressAnyKeyFont;
+            Messages[13].Color = Style.PressAnyKeyTextColor;
 
             // Specify alignments
             Alignments Alignment = new Alignments();
@@ -652,16 +673,16 @@ namespace GameOfLife
                 (BufferSize.Height - GenerationCountSize.Height) - 75
             );
             Painter.DrawImage(ArrowDL, GenerationCountArrowPosition);
-            ArrowDL.Dispose();
             SizeF GenerationCountArrowTextSize = Painter.MeasureString(
                 Properties.Resources.IntroductionGenerationCount, Style.IntroductionArrowTextFont);
             Painter.DrawString(
                 Properties.Resources.IntroductionGenerationCount,
                 Style.IntroductionArrowTextFont,
                 Style.IntroductionArrowTextColor,
-                GenerationCountArrowPosition.X + 70,
+                GenerationCountArrowPosition.X + ArrowDL.Width,
                 GenerationCountArrowPosition.Y - (GenerationCountArrowTextSize.Height / 2)
             );
+            ArrowDL.Dispose();
 
             // Grid Settings
             Bitmap ArrowDR = new Bitmap(Properties.Resources.ArrowDR);
@@ -676,8 +697,8 @@ namespace GameOfLife
                 Properties.Resources.IntroductionGridSettings,
                 Style.IntroductionArrowTextFont,
                 Style.IntroductionArrowTextColor,
-                (GridSettingsArrowPosition.X + ArrowDR.Width) - GenerationCountArrowTextSize.Width,
-                GridSettingsArrowPosition.Y - (GenerationCountArrowTextSize.Height / 2)
+                (GridSettingsArrowPosition.X) - GridSettingsArrowTextSize.Width,
+                GridSettingsArrowPosition.Y - (GridSettingsArrowTextSize.Height / 2)
             );
             ArrowDR.Dispose();
 
@@ -688,6 +709,15 @@ namespace GameOfLife
                 HelpPromptSize.Height
             );
             Painter.DrawImage(ArrowUR, HelpPromptArrowPosition);
+            SizeF HelpPromptArrowTextSize = Painter.MeasureString(
+                Properties.Resources.IntroductionHelpPrompt, Style.IntroductionArrowTextFont);
+            Painter.DrawString(
+                Properties.Resources.IntroductionHelpPrompt,
+                Style.IntroductionArrowTextFont,
+                Style.IntroductionArrowTextColor,
+                (HelpPromptArrowPosition.X) - HelpPromptArrowTextSize.Width,
+                (HelpPromptArrowPosition.Y + ArrowUR.Height) - (HelpPromptArrowTextSize.Height / 2)
+            );
             ArrowUR.Dispose();
         }
 
@@ -982,7 +1012,8 @@ namespace GameOfLife
             // Calculate sizes of all the messages and total size of all the messages.
             for (int i = 0; i < Messages.Length; i++)
             {
-                MessageSize[i] = Painter.MeasureString(Messages[i].Text, Messages[i].Style, BufferSize.Width / 3);
+                MessageSize[i] = Painter.MeasureString(Messages[i].Text, Messages[i].Style, 
+                    Math.Min(BufferSize.Width / 2, 1000));
                 TotalMessageSize.Width = Math.Max(MessageSize[i].Width, TotalMessageSize.Width);
                 TotalMessageSize.Height += MessageSize[i].Height;
             }

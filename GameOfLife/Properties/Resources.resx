@@ -164,10 +164,10 @@
     <value>STABILIZATION REACHED</value>
   </data>
   <data name="HelpAutoStep" xml:space="preserve">
-    <value> - Start or Stop Autostepping</value>
+    <value> - Start/Stop Autostepping</value>
   </data>
   <data name="HelpBeforeGame" xml:space="preserve">
-    <value>BEFORE GAME</value>
+    <value>GRID SETTINGS</value>
   </data>
   <data name="HelpDecreaseCellSize" xml:space="preserve">
     <value> +  - Decrease Cell Size</value>
@@ -247,8 +247,8 @@
   <data name="GameOscillation" xml:space="preserve">
     <value>OSCILLATION OCCURING</value>
   </data>
-  <data name="IntroductionTextMain" xml:space="preserve">
-    <value>The Game of Life is a cellular automaton created by John Horton Conway in 1970. In this version of Conway’s Game of Life, you begin by adjusting the GRID SETTINGS and then starting a game. You may manually step through generations or have the program auto-step through generations for you. At any point during a game you can switch between manual stepping and auto-stepping. Once a game has been started the GENERATION COUNT will keep track of which generation your grid is displaying. When your game reaches a conclusion, one of three outcomes will be presenting to you.</value>
+  <data name="IntroductionTextMain1" xml:space="preserve">
+    <value>The Game of Life is a cellular automaton created by John Horton Conway in 1970. When a game begins the grid is filled randomly with life. Upon each successive generation, each cell must adhere to the following rules:</value>
   </data>
   <data name="IntroductionTextTip" xml:space="preserve">
     <value>If this is your first time playing, review the HELP screen for controls.</value>
@@ -270,5 +270,23 @@
   </data>
   <data name="IntroductionGridSettings" xml:space="preserve">
     <value>GRID SETTINGS</value>
+  </data>
+  <data name="IntroductionHelpPrompt" xml:space="preserve">
+    <value>HELP</value>
+  </data>
+  <data name="IntroductionRule1" xml:space="preserve">
+    <value>    1. Any live cell with fewer than two live neighbours dies, as if caused by under-population.</value>
+  </data>
+  <data name="IntroductionRule2" xml:space="preserve">
+    <value>    2. Any live cell with two or three live neighbours lives on to the next generation.</value>
+  </data>
+  <data name="IntroductionRule3" xml:space="preserve">
+    <value>    3. Any live cell with more than three live neighbours dies, as if by overcrowding.</value>
+  </data>
+  <data name="IntroductionRule4" xml:space="preserve">
+    <value>    4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</value>
+  </data>
+  <data name="IntroductionTextMain2" xml:space="preserve">
+    <value>To play the game all you need to do is start stepping, or auto-stepping, through generations. The current generation will be displayed by the GENERATION COUNT. When the game comes to an end, one of three outcomes will be displayed. If you would like more control over the game, you can adjust the GRID SETTINGS (including rows, columns, cell size, and initial life chance) prior to starting a game.</value>
   </data>
 </root>

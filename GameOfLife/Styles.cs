@@ -210,11 +210,11 @@ namespace GameOfLife
 
             IntroductionPopupTitleFont = new Font(Roboto, 18, FontStyle.Bold);
 
-            IntroductionPopupItemFont = new Font(Roboto, 14, FontStyle.Regular);
+            IntroductionPopupItemFont = new Font(Roboto, 12, FontStyle.Regular);
 
             IntroductionArrowTextFont = new Font(RobotoBlack, 16, FontStyle.Regular);
 
-            PopupSpacerFont = new Font(Roboto, 10, FontStyle.Regular);
+            PopupSpacerFont = new Font(Roboto, 4, FontStyle.Regular);
 
             PressAnyKeyFont = new Font(RobotoBlack, 12, FontStyle.Bold);
 
