@@ -36,6 +36,8 @@ namespace GameOfLife
         [STAThread]
         static void Main()
         {
+            // The sole function of this method is to create and view the main
+            // Windows form.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new Program());

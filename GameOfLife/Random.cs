@@ -16,8 +16,14 @@ namespace GameOfLife
     /// </summary>
     static class Random
     {
-        static System.Random RandomObject = new System.Random();
-        static Object threadLock = new object();
+        #region Private Members
+
+        private static System.Random RandomObject = new System.Random();
+        private static Object threadLock = new object();
+
+        #endregion Private Members
+
+        #region Public Interface
 
         /// <summary>
         /// Returns a random integer from min to max.
@@ -32,5 +38,8 @@ namespace GameOfLife
                 return RandomObject.Next(min, max + 1);
             }
         }
+
+        #endregion Public Interface
+
     }
 }

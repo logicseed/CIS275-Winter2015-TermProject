@@ -13,11 +13,16 @@ namespace GameOfLife
 {
     public partial class Program : Form
     {
+        #region Private Members
 
         /// <summary>
         /// Handles the timing for the auto-step functions.
         /// </summary>
         private System.Windows.Forms.Timer AutoStepTimer;
+
+        #endregion Private Members
+
+        #region Intialize and Destruct
 
         /// <summary>
         /// The constructor for the primary Windows form. Initializes the form,
@@ -57,6 +62,10 @@ namespace GameOfLife
             AutoStepTimer.Interval = 50;
             AutoStepTimer.Tick += new System.EventHandler(AutoStep);
         }
+
+        #endregion Initialize and Destruct
+
+        #region Private Interface
 
         // We override the OnPaintBackground function to allow the paint event
         // to handle all the graphics. This helps prevent screen flickering.
@@ -386,5 +395,8 @@ namespace GameOfLife
                 Setting.LifeChance--;
             }
         }
+
+        #endregion Private Interface
+
     }
 }

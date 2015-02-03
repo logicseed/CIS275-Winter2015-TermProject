@@ -8,7 +8,6 @@
 
 using System.Drawing;
 using System.Drawing.Text;
-using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -17,6 +16,8 @@ namespace GameOfLife
 {
     internal static class Style
     {
+
+        #region Public Members
 
         // Various values used through the program.
         public static int ElementMargin = 10;
@@ -27,17 +28,6 @@ namespace GameOfLife
         public static int PopupMargin = 0;
         public static int PopupPadding = 20;
         public static int PopupSpacing = 5;
-
-        /// <summary>
-        /// Initializes the Style class for use in the program.
-        /// </summary>
-        public static void Initialize()
-        {
-            InitializeRobotoFonts();
-            InitializeFonts();
-        }
-
-        #region Colors
 
         /// <summary>
         /// This is an array to store the colors for the various types of
@@ -66,29 +56,8 @@ namespace GameOfLife
             Color.FromArgb(232, 29, 98)  // 16 - Pink
         };
 
-        // Create solid brushes for each of the colors.
-        // This could be performed in a for loop if we didn't
-        // want the variable to be static.
-        public static SolidBrush[] LifeBrush = new SolidBrush[]
-        {
-            new SolidBrush(LifeColor[0]),
-            new SolidBrush(LifeColor[1]),
-            new SolidBrush(LifeColor[2]),
-            new SolidBrush(LifeColor[3]),
-            new SolidBrush(LifeColor[4]),
-            new SolidBrush(LifeColor[5]),
-            new SolidBrush(LifeColor[6]),
-            new SolidBrush(LifeColor[7]),
-            new SolidBrush(LifeColor[8]),
-            new SolidBrush(LifeColor[9]),
-            new SolidBrush(LifeColor[10]),
-            new SolidBrush(LifeColor[11]),
-            new SolidBrush(LifeColor[12]),
-            new SolidBrush(LifeColor[13]),
-            new SolidBrush(LifeColor[14]),
-            new SolidBrush(LifeColor[15]),
-            new SolidBrush(LifeColor[16])
-        };
+        // The Brush array used to draw the life rectangles
+        public static SolidBrush[] LifeBrush = new SolidBrush[LifeColor.Length];
 
         /// <summary>
         /// This is an array to store various other colors used throughout
@@ -103,6 +72,7 @@ namespace GameOfLife
             Color.FromArgb(100, 0, 0, 0)  //  4 - Black Shade
         };
 
+        // Brushes used to draw the various screen elements
         public static SolidBrush SplashScreenBackgroundColor = new SolidBrush(UIColor[2]);
         public static SolidBrush SplashScreenTextColor = new SolidBrush(UIColor[0]);
         public static SolidBrush MainScreenBackgroundColor = new SolidBrush(UIColor[1]);
@@ -130,14 +100,13 @@ namespace GameOfLife
         public static SolidBrush IntroductionArrowTextColor = new SolidBrush(LifeColor[12]);
         public static SolidBrush PressAnyKeyTextColor = new SolidBrush(LifeColor[2]);
 
+        // The grid is darker when a game isn't running to make it easier to modify
+        // the grid settings. Once a game starts the grid lightens to give the
+        // life rectangles more prominence.
         public static Pen GridCellPen = new Pen(UIColor[3], 1);
         public static Pen GridDarkCellPen = new Pen(UIColor[2], 1);
 
-        #endregion Colors
-
-
-        #region Fonts
-
+        // The fonts used by various screen elements.
         public static PrivateFontCollection[] RobotoFontCollection;
 
         public static Font SplashScreenFont;
@@ -161,8 +130,12 @@ namespace GameOfLife
         public static Font PopupSpacerFont;
         public static Font PressAnyKeyFont;
 
+        #endregion Public Members
 
+        #region Private Members
 
+        // Used during the initialization of fonts to make it easier to specify
+        // which font a particular element uses.
         private static FontFamily Roboto;
         private static FontFamily RobotoThin;
         private static FontFamily RobotoLight;
@@ -172,130 +145,78 @@ namespace GameOfLife
         private static FontFamily RobotoCondensedLight;
         private static FontFamily RobotoKeys;
 
+        #endregion Private Members
 
+        #region Initialize and Destruct
 
+        /// <summary>
+        /// Initializes the Style class for use in the program.
+        /// </summary>
+        public static void Initialize()
+        {
+            InitializeColors();
+            InitializeRobotoFonts();
+            InitializeFonts();
+        }
+
+        /// <summary>
+        /// Fills the LifeBrush array with colors for use in drawing the life
+        /// rectangles.
+        /// </summary>
+        private static void InitializeColors()
+        {
+            // Create brush for use in painting the life squares.
+            for (int i = 0; i < LifeColor.Length; i++)
+            {
+                LifeBrush[i] = new SolidBrush(LifeColor[i]);
+            }
+        }
+
+        /// <summary>
+        /// Sets the font properties for the fonts used by various screen elements.
+        /// </summary>
         private static void InitializeFonts()
         {
 
-            SplashScreenFont = new Font(
-                RobotoBlack,
-                16,
-                FontStyle.Bold
-            );
+            SplashScreenFont = new Font(RobotoBlack, 16, FontStyle.Bold);
 
-            HelpPromptFont = new Font(
-                RobotoKeys,
-                16,
-                FontStyle.Bold
-            );
+            HelpPromptFont = new Font(RobotoKeys, 16, FontStyle.Bold);
 
-            GenerationCountTitleFont = new Font(
-                RobotoCondensed, 
-                20, 
-                FontStyle.Bold
-            );
+            GenerationCountTitleFont = new Font(RobotoCondensed, 20, FontStyle.Bold);
 
-            GenerationCountValueFont = new Font(
-                RobotoCondensed, 
-                20, 
-                FontStyle.Regular
-            );
+            GenerationCountValueFont = new Font(RobotoCondensed, 20, FontStyle.Regular);
 
-            GridSettingsTitleFont = new Font(
-                RobotoCondensed, 
-                14, 
-                FontStyle.Bold
-            );
+            GridSettingsTitleFont = new Font(RobotoCondensed, 14, FontStyle.Bold);
 
-            GridSettingsValueFont = new Font(
-                RobotoCondensed, 
-                14, 
-                FontStyle.Regular
-            );
+            GridSettingsValueFont = new Font(RobotoCondensed, 14, FontStyle.Regular);
 
-            HelpPopupTitleFont = new Font(
-                Roboto, 
-                16, 
-                FontStyle.Bold
-            );
+            HelpPopupTitleFont = new Font(Roboto, 16, FontStyle.Bold);
 
-            HelpPopupSectionFont = new Font(
-                Roboto, 
-                12, 
-                FontStyle.Regular
-            );
+            HelpPopupSectionFont = new Font(Roboto, 12, FontStyle.Regular);
 
-            HelpPopupItemFont = new Font(
-                RobotoKeys, 
-                14, 
-                FontStyle.Regular
-            );
+            HelpPopupItemFont = new Font(RobotoKeys, 14, FontStyle.Regular);
 
-            ExitConfirmationTitleFont = new Font(
-                RobotoKeys,
-                16,
-                FontStyle.Bold
-            );
+            ExitConfirmationTitleFont = new Font(RobotoKeys, 16, FontStyle.Bold);
 
-            ExitConfirmationSectionFont = new Font(
-                RobotoBlack,
-                12,
-                FontStyle.Regular
-            );
+            ExitConfirmationSectionFont = new Font(RobotoBlack, 12, FontStyle.Regular);
 
-            OutcomePopupFont = new Font(
-                Roboto,
-                20,
-                FontStyle.Bold
-            );
+            OutcomePopupFont = new Font(Roboto, 20, FontStyle.Bold);
 
-            CreditsPopupTitleFont = new Font(
-                Roboto,
-                18,
-                FontStyle.Bold
-            );
+            CreditsPopupTitleFont = new Font(Roboto, 18, FontStyle.Bold);
 
-            CreditsPopupSectionFont = new Font(
-                Roboto,
-                12,
-                FontStyle.Regular
-            );
+            CreditsPopupSectionFont = new Font(Roboto, 12, FontStyle.Regular);
 
-            CreditsPopupItemFont = new Font(
-                Roboto,
-                14,
-                FontStyle.Bold
-            );
+            CreditsPopupItemFont = new Font(Roboto, 14, FontStyle.Bold);
 
-            IntroductionPopupTitleFont = new Font(
-                Roboto,
-                18,
-                FontStyle.Bold
-            );
+            IntroductionPopupTitleFont = new Font(Roboto, 18, FontStyle.Bold);
 
-            IntroductionPopupItemFont = new Font(
-                Roboto,
-                14,
-                FontStyle.Regular
-            );
+            IntroductionPopupItemFont = new Font(Roboto, 14, FontStyle.Regular);
 
-            IntroductionArrowTextFont = new Font(
-                RobotoBlack,
-                16,
-                FontStyle.Regular
-            );
+            IntroductionArrowTextFont = new Font(RobotoBlack, 16, FontStyle.Regular);
 
-            PopupSpacerFont = new Font(
-                Roboto,
-                10,
-                FontStyle.Regular
-            );
+            PopupSpacerFont = new Font(Roboto, 10, FontStyle.Regular);
 
-            PressAnyKeyFont = new Font(
-                RobotoBlack,
-                12,
-                FontStyle.Bold
-            );
+            PressAnyKeyFont = new Font(RobotoBlack, 12, FontStyle.Bold);
 
         }
 
@@ -314,7 +235,7 @@ namespace GameOfLife
 
             // Variable to store the file names for each family.
             string[] FontFiles;
-            
+
             // Roboto
             FontFiles = new string[] {
                 "Roboto-Regular.ttf",
@@ -388,6 +309,10 @@ namespace GameOfLife
             RobotoKeys = RobotoFontCollection[RobotoFamily.Keys].Families[0];
         }
 
+        #endregion Initialize and Destruct
+
+        #region Private Interface
+
         /// <summary>
         /// Will load a family of fonts and store them in a PrivateFontCollection
         /// if they are located in the Fonts folder.
@@ -433,7 +358,7 @@ namespace GameOfLife
         /// This static class is used to overcome a limitation in enum that will
         /// not allow it to be automatically cast to an integer.
         /// </summary>
-        internal static class RobotoFamily
+        private static class RobotoFamily
         {
             public static int Regular = 0;
             public static int Thin = 1;
@@ -446,9 +371,7 @@ namespace GameOfLife
             public static int TotalFamilies = 8;
         }
 
-        #endregion Fonts
+        #endregion Private Interface
 
     }
-
-    
 }

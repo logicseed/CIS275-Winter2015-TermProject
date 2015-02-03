@@ -11,6 +11,9 @@ using System.Media;
 
 namespace GameOfLife
 {
+    // This partial class is part of the Windows form Program class that resides
+    // in Program.cs. This was separated into this file to keep the key press
+    // logic in an easy to locate place.
     partial class Program
     {
         /// <summary>

@@ -20,6 +20,9 @@ namespace GameOfLife
     /// </summary>
     internal static class Screen
     {
+
+        #region Private Members
+
         private static Graphics Painter;
         private static Bitmap Buffer;
         private static Size BufferSize;
@@ -54,6 +57,10 @@ namespace GameOfLife
         // before.
         private static bool ValidGrid = false;
 
+        #endregion Private Members
+
+        #region Initialize and Destruct
+
         /// <summary>
         /// Initializes the class to begin painting on the buffer.
         /// </summary>
@@ -68,6 +75,10 @@ namespace GameOfLife
             //Painter.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             //Painter.TextRenderingHint = TextRenderingHint.SystemDefault;
         }
+
+        #endregion Initialize and Destruct
+
+        #region Public Interface
 
         /// <summary>
         /// Returns the current screen buffer and then resets it in preparation for future drawing.
@@ -129,6 +140,71 @@ namespace GameOfLife
         {
             ValidGrid = false;
         }
+
+        /// <summary>
+        /// Calculates the maximum number of rows we can fit in the current grid
+        /// space with the current cell size setting.
+        /// </summary>
+        /// <returns>The maximum number of rows that can fit in the grid space.</returns>
+        public static int CalculateMaxRows()
+        {
+            int MaxRows = (CalculateGridSpace().Height - 1) / (Setting.CellSize + 1);
+            return MaxRows;
+        }
+
+        /// <summary>
+        /// Calculates the maximum number of columns we can fit in the current grid
+        /// space with the current cell size setting.
+        /// </summary>
+        /// <returns>The maximum number of columns that can fit in the grid space.</returns>
+        public static int CalculateMaxColumns()
+        {
+            int MaxColumns = (CalculateGridSpace().Width - 1) / (Setting.CellSize + 1);
+            return MaxColumns;
+        }
+
+        /// <summary>
+        /// Calculates the maximum cell size we can fit in the current grid space
+        /// with the current rows and columns settings.
+        /// </summary>
+        /// <returns>The maximum pixel size of the cells that can fit in the grid space.</returns>
+        public static int CalculateMaxCellSize()
+        {
+            int MaxCellSize = Math.Min(
+                ((CalculateGridSpace().Height - 1) / Setting.Rows) - 1,
+                ((CalculateGridSpace().Width - 1) / Setting.Columns) - 1
+                );
+            return MaxCellSize;
+        }
+
+        /// <summary>
+        /// Maximizes the grid in regards to rows and columns.
+        /// DEVELOPER ONLY
+        /// </summary>
+        public static void MaximizeGridSize()
+        {
+            Setting.CellSize = 5;
+            Setting.Rows = CalculateMaxRows();
+            Setting.Columns = CalculateMaxColumns();
+            ValidGrid = false;
+        }
+
+        /// <summary>
+        /// Sets a very large cell size and them fits as many rows and columns
+        /// as possible on the screen.
+        /// DEVELOPER ONLY
+        /// </summary>
+        public static void MinimizeGridSize()
+        {
+            Setting.CellSize = 100;
+            Setting.Rows = CalculateMaxRows();
+            Setting.Columns = CalculateMaxColumns();
+            ValidGrid = false;
+        }
+
+        #endregion Public Interface
+
+        #region Private Interface
 
         /// <summary>
         /// Draws the splash screen to the buffer.
@@ -382,6 +458,32 @@ namespace GameOfLife
         }
 
         /// <summary>
+        /// Measures the grid that would result with the current grid settings.
+        /// </summary>
+        private static void MeasureGrid()
+        {
+            // Calculate the size of the grid.
+            // We want a pixel between each cell and a pixel surrounding
+            // all the cells.
+            GridSize = new Size(
+                (Setting.CellSize * Setting.Columns) + Setting.Columns, // Width
+                (Setting.CellSize * Setting.Rows) + Setting.Rows // Height
+            );
+
+            // The grid position is based on the size of the screen.
+            // We attempt to center the grid vertically and horizontally.
+            // To overcome grid flickering due to anti-aliasing, we add
+            // 0.5f to each value.
+            GridPosition = new PointF(
+                (float)Math.Floor((BufferSize.Width - GridSize.Width) / 2.0f) + 0.5f,
+                (float)Math.Floor((BufferSize.Height - GridSize.Height) / 2.0f) + 0.5f
+            );
+
+            // Claim gridSize is valid.
+            ValidGrid = true;
+        }
+
+        /// <summary>
         /// Draws the game logo to the buffer.
         /// </summary>
         private static void DrawLogo()
@@ -557,7 +659,7 @@ namespace GameOfLife
                 Properties.Resources.IntroductionGenerationCount,
                 Style.IntroductionArrowTextFont,
                 Style.IntroductionArrowTextColor,
-                GenerationCountArrowPosition.X,
+                GenerationCountArrowPosition.X + 70,
                 GenerationCountArrowPosition.Y - (GenerationCountArrowTextSize.Height / 2)
             );
 
@@ -837,32 +939,6 @@ namespace GameOfLife
         }
 
         /// <summary>
-        /// Measures the grid that would result with the current grid settings.
-        /// </summary>
-        private static void MeasureGrid()
-        {
-            // Calculate the size of the grid.
-            // We want a pixel between each cell and a pixel surrounding
-            // all the cells.
-            GridSize = new Size(
-                (Setting.CellSize * Setting.Columns) + Setting.Columns, // Width
-                (Setting.CellSize * Setting.Rows) + Setting.Rows // Height
-            );
-
-            // The grid position is based on the size of the screen.
-            // We attempt to center the grid vertically and horizontally.
-            // To overcome grid flickering due to anti-aliasing, we add
-            // 0.5f to each value.
-            GridPosition = new PointF(
-                (float)Math.Floor((BufferSize.Width - GridSize.Width) / 2.0f) + 0.5f,
-                (float)Math.Floor((BufferSize.Height - GridSize.Height) / 2.0f) + 0.5f
-            );
-
-            // Claim gridSize is valid.
-            ValidGrid = true;
-        }
-
-        /// <summary>
         /// Draws the colored squares representing life to the buffer.
         /// </summary>
         private static void DrawLife()
@@ -1069,42 +1145,6 @@ namespace GameOfLife
         }
 
         /// <summary>
-        /// Calculates the maximum number of rows we can fit in the current grid
-        /// space with the current cell size setting.
-        /// </summary>
-        /// <returns>The maximum number of rows that can fit in the grid space.</returns>
-        public static int CalculateMaxRows()
-        {
-            int MaxRows = (CalculateGridSpace().Height - 1) / (Setting.CellSize + 1);
-            return MaxRows;
-        }
-
-        /// <summary>
-        /// Calculates the maximum number of columns we can fit in the current grid
-        /// space with the current cell size setting.
-        /// </summary>
-        /// <returns>The maximum number of columns that can fit in the grid space.</returns>
-        public static int CalculateMaxColumns()
-        {
-            int MaxColumns = (CalculateGridSpace().Width - 1) / (Setting.CellSize + 1);
-            return MaxColumns;
-        }
-
-        /// <summary>
-        /// Calculates the maximum cell size we can fit in the current grid space
-        /// with the current rows and columns settings.
-        /// </summary>
-        /// <returns>The maximum pixel size of the cells that can fit in the grid space.</returns>
-        public static int CalculateMaxCellSize()
-        {
-            int MaxCellSize = Math.Min(
-                ((CalculateGridSpace().Height - 1) / Setting.Rows) - 1,
-                ((CalculateGridSpace().Width - 1) / Setting.Columns) - 1
-                );
-            return MaxCellSize;
-        }
-
-        /// <summary>
         /// Determines the default number of rows and columns based on our default
         /// cell size of 20px.
         /// </summary>
@@ -1114,29 +1154,7 @@ namespace GameOfLife
             Setting.Columns = CalculateMaxColumns();
         }
 
-        /// <summary>
-        /// Maximizes the grid in regards to rows and columns.
-        /// DEVELOPER ONLY
-        /// </summary>
-        public static void MaximizeGridSize()
-        {
-            Setting.CellSize = 5;
-            Setting.Rows = CalculateMaxRows();
-            Setting.Columns = CalculateMaxColumns();
-            ValidGrid = false;
-        }
+        #endregion Private Interface
 
-        /// <summary>
-        /// Sets a very large cell size and them fits as many rows and columns
-        /// as possible on the screen.
-        /// DEVELOPER ONLY
-        /// </summary>
-        public static void MinimizeGridSize()
-        {
-            Setting.CellSize = 100;
-            Setting.Rows = CalculateMaxRows();
-            Setting.Columns = CalculateMaxColumns();
-            ValidGrid = false;
-        }
     }
 }

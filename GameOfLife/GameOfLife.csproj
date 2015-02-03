@@ -72,6 +72,8 @@
     <Compile Include="Life.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Screen.cs" />
     <Compile Include="Settings.cs" />
@@ -91,7 +93,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram.cd" />
     <None Include="Fonts\CHANGES.md" />
     <None Include="Fonts\LICENSE.md" />
     <None Include="Fonts\README.md" />

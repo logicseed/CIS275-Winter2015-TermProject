@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GameOfLife.Properties
-{
+namespace GameOfLife.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,615 +22,505 @@ namespace GameOfLife.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GameOfLife.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowDL
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap ArrowDL {
+            get {
                 object obj = ResourceManager.GetObject("ArrowDL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowDR
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap ArrowDR {
+            get {
                 object obj = ResourceManager.GetObject("ArrowDR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ArrowUR
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap ArrowUR {
+            get {
                 object obj = ResourceManager.GetObject("ArrowUR", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to CELL SIZE: .
         /// </summary>
-        internal static string CellSizeTitle
-        {
-            get
-            {
+        internal static string CellSizeTitle {
+            get {
                 return ResourceManager.GetString("CellSizeTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to COLUMNS: .
         /// </summary>
-        internal static string ColumnCountTitle
-        {
-            get
-            {
+        internal static string ColumnCountTitle {
+            get {
                 return ResourceManager.GetString("ColumnCountTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to John Horton Conway.
         /// </summary>
-        internal static string CreditsConway
-        {
-            get
-            {
+        internal static string CreditsConway {
+            get {
                 return ResourceManager.GetString("CreditsConway", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GAME CONCEPT.
         /// </summary>
-        internal static string CreditsGame
-        {
-            get
-            {
+        internal static string CreditsGame {
+            get {
                 return ResourceManager.GetString("CreditsGame", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Google Inc (Creative Commons BY-NC-SA).
+        ///   Looks up a localized string similar to Google Inc (Apache 2.0 License).
         /// </summary>
-        internal static string CreditsGoogle
-        {
-            get
-            {
+        internal static string CreditsGoogle {
+            get {
                 return ResourceManager.GetString("CreditsGoogle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Marc King.
         /// </summary>
-        internal static string CreditsMarcKing
-        {
-            get
-            {
+        internal static string CreditsMarcKing {
+            get {
                 return ResourceManager.GetString("CreditsMarcKing", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Fonts Modified by Marc King.
         /// </summary>
-        internal static string CreditsModMarc
-        {
-            get
-            {
+        internal static string CreditsModMarc {
+            get {
                 return ResourceManager.GetString("CreditsModMarc", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PROGRAMMING AND DESIGN.
         /// </summary>
-        internal static string CreditsProgramming
-        {
-            get
-            {
+        internal static string CreditsProgramming {
+            get {
                 return ResourceManager.GetString("CreditsProgramming", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to FONTS AND COLORS.
         /// </summary>
-        internal static string CreditsStyles
-        {
-            get
-            {
+        internal static string CreditsStyles {
+            get {
                 return ResourceManager.GetString("CreditsStyles", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GAME OF LIFE CREDITS.
         /// </summary>
-        internal static string CreditsTitle
-        {
-            get
-            {
+        internal static string CreditsTitle {
+            get {
                 return ResourceManager.GetString("CreditsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS ANY OTHER KEY TO CONTINUE.
         /// </summary>
-        internal static string ExitCancel
-        {
-            get
-            {
+        internal static string ExitCancel {
+            get {
                 return ResourceManager.GetString("ExitCancel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS  TO EXIT.
         /// </summary>
-        internal static string ExitConfirmation
-        {
-            get
-            {
+        internal static string ExitConfirmation {
+            get {
                 return ResourceManager.GetString("ExitConfirmation", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to EXTINCTION EVENT.
         /// </summary>
-        internal static string GameExtinction
-        {
-            get
-            {
+        internal static string GameExtinction {
+            get {
                 return ResourceManager.GetString("GameExtinction", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to OSCILLATION OCCURING.
         /// </summary>
-        internal static string GameOscillation
-        {
-            get
-            {
+        internal static string GameOscillation {
+            get {
                 return ResourceManager.GetString("GameOscillation", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to STABILIZATION REACHED.
         /// </summary>
-        internal static string GameStabilization
-        {
-            get
-            {
+        internal static string GameStabilization {
+            get {
                 return ResourceManager.GetString("GameStabilization", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to NONE.
         /// </summary>
-        internal static string GenerationEmpty
-        {
-            get
-            {
+        internal static string GenerationEmpty {
+            get {
                 return ResourceManager.GetString("GenerationEmpty", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GENERATION: .
         /// </summary>
-        internal static string GenerationTitle
-        {
-            get
-            {
+        internal static string GenerationTitle {
+            get {
                 return ResourceManager.GetString("GenerationTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Start or Stop Autostepping.
         /// </summary>
-        internal static string HelpAutoStep
-        {
-            get
-            {
+        internal static string HelpAutoStep {
+            get {
                 return ResourceManager.GetString("HelpAutoStep", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to BEFORE GAME.
         /// </summary>
-        internal static string HelpBeforeGame
-        {
-            get
-            {
+        internal static string HelpBeforeGame {
+            get {
                 return ResourceManager.GetString("HelpBeforeGame", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  +  - Decrease Cell Size.
         /// </summary>
-        internal static string HelpDecreaseCellSize
-        {
-            get
-            {
+        internal static string HelpDecreaseCellSize {
+            get {
                 return ResourceManager.GetString("HelpDecreaseCellSize", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Decrease Columns.
         /// </summary>
-        internal static string HelpDecreaseColumns
-        {
-            get
-            {
+        internal static string HelpDecreaseColumns {
+            get {
                 return ResourceManager.GetString("HelpDecreaseColumns", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  +  - Decrease Life Chance.
         /// </summary>
-        internal static string HelpDecreaseLifeChance
-        {
-            get
-            {
+        internal static string HelpDecreaseLifeChance {
+            get {
                 return ResourceManager.GetString("HelpDecreaseLifeChance", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Decrease Rows.
         /// </summary>
-        internal static string HelpDecreaseRows
-        {
-            get
-            {
+        internal static string HelpDecreaseRows {
+            get {
                 return ResourceManager.GetString("HelpDecreaseRows", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Reset Game.
         /// </summary>
-        internal static string HelpEndGame
-        {
-            get
-            {
+        internal static string HelpEndGame {
+            get {
                 return ResourceManager.GetString("HelpEndGame", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Exit Game.
         /// </summary>
-        internal static string HelpExitGame
-        {
-            get
-            {
+        internal static string HelpExitGame {
+            get {
                 return ResourceManager.GetString("HelpExitGame", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  +  - Increase Cell Size.
         /// </summary>
-        internal static string HelpIncreaseCellSize
-        {
-            get
-            {
+        internal static string HelpIncreaseCellSize {
+            get {
                 return ResourceManager.GetString("HelpIncreaseCellSize", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Increase Columns.
         /// </summary>
-        internal static string HelpIncreaseColumns
-        {
-            get
-            {
+        internal static string HelpIncreaseColumns {
+            get {
                 return ResourceManager.GetString("HelpIncreaseColumns", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  +  - Increase Life Chance.
         /// </summary>
-        internal static string HelpIncreaseLifeChance
-        {
-            get
-            {
+        internal static string HelpIncreaseLifeChance {
+            get {
                 return ResourceManager.GetString("HelpIncreaseLifeChance", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Increase Rows.
         /// </summary>
-        internal static string HelpIncreaseRows
-        {
-            get
-            {
+        internal static string HelpIncreaseRows {
+            get {
                 return ResourceManager.GetString("HelpIncreaseRows", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MAIN CONTROLS.
         /// </summary>
-        internal static string HelpMainControls
-        {
-            get
-            {
+        internal static string HelpMainControls {
+            get {
                 return ResourceManager.GetString("HelpMainControls", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Step to Next Generation.
         /// </summary>
-        internal static string HelpNextStep
-        {
-            get
-            {
+        internal static string HelpNextStep {
+            get {
                 return ResourceManager.GetString("HelpNextStep", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS  FOR HELP.
         /// </summary>
-        internal static string HelpPrompt
-        {
-            get
-            {
+        internal static string HelpPrompt {
+            get {
                 return ResourceManager.GetString("HelpPrompt", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to  - Show Credits.
         /// </summary>
-        internal static string HelpShowCredits
-        {
-            get
-            {
+        internal static string HelpShowCredits {
+            get {
                 return ResourceManager.GetString("HelpShowCredits", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GAME OF LIFE HELP.
         /// </summary>
-        internal static string HelpTitle
-        {
-            get
-            {
+        internal static string HelpTitle {
+            get {
                 return ResourceManager.GetString("HelpTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon Icon
-        {
-            get
-            {
+        internal static System.Drawing.Icon Icon {
+            get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GENERATION COUNT.
         /// </summary>
-        internal static string IntroductionGenerationCount
-        {
-            get
-            {
+        internal static string IntroductionGenerationCount {
+            get {
                 return ResourceManager.GetString("IntroductionGenerationCount", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to GRID SETTINGS.
         /// </summary>
-        internal static string IntroductionGridSettings
-        {
-            get
-            {
+        internal static string IntroductionGridSettings {
+            get {
                 return ResourceManager.GetString("IntroductionGridSettings", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to The Game of Life is a cellular automaton created by John Horton Conway in 1970. In this version of Conway’s Game of Life, you begin by adjusting the GRID SETTINGS and then starting a game. You may manually step through generations or have the program auto-step through generations for you. At any point during a game you can switch between manual stepping and auto-stepping. Once a game has been started the GENERATION COUNT will keep track of which generation your grid is displaying. Once your game reaches a c [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to The Game of Life is a cellular automaton created by John Horton Conway in 1970. In this version of Conway’s Game of Life, you begin by adjusting the GRID SETTINGS and then starting a game. You may manually step through generations or have the program auto-step through generations for you. At any point during a game you can switch between manual stepping and auto-stepping. Once a game has been started the GENERATION COUNT will keep track of which generation your grid is displaying. When your game reaches a c [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string IntroductionTextMain
-        {
-            get
-            {
+        internal static string IntroductionTextMain {
+            get {
                 return ResourceManager.GetString("IntroductionTextMain", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to If this is your first time playing, review the HELP screen for controls..
         /// </summary>
-        internal static string IntroductionTextTip
-        {
-            get
-            {
+        internal static string IntroductionTextTip {
+            get {
                 return ResourceManager.GetString("IntroductionTextTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Welcome to the Game of Life!.
         /// </summary>
-        internal static string IntroductionTitle
-        {
-            get
-            {
+        internal static string IntroductionTitle {
+            get {
                 return ResourceManager.GetString("IntroductionTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to LIFE CHANCE: .
         /// </summary>
-        internal static string LifeChanceTitle
-        {
-            get
-            {
+        internal static string LifeChanceTitle {
+            get {
                 return ResourceManager.GetString("LifeChanceTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Logo {
+            get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to max:.
         /// </summary>
-        internal static string Max
-        {
-            get
-            {
+        internal static string Max {
+            get {
                 return ResourceManager.GetString("Max", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS ANY KEY TO CONTINUE.
         /// </summary>
-        internal static string PressAnyKey
-        {
-            get
-            {
+        internal static string PressAnyKey {
+            get {
                 return ResourceManager.GetString("PressAnyKey", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS ANY OTHER KEY TO CONTINUE.
         /// </summary>
-        internal static string PressAnyOtherKey
-        {
-            get
-            {
+        internal static string PressAnyOtherKey {
+            get {
                 return ResourceManager.GetString("PressAnyOtherKey", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ROWS: .
         /// </summary>
-        internal static string RowCountTitle
-        {
-            get
-            {
+        internal static string RowCountTitle {
+            get {
                 return ResourceManager.GetString("RowCountTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Splash
-        {
-            get
-            {
+        internal static System.Drawing.Bitmap Splash {
+            get {
                 object obj = ResourceManager.GetObject("Splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PRESS ANY KEY TO CONTINUE.
         /// </summary>
-        internal static string SplashScreen
-        {
-            get
-            {
+        internal static string SplashScreen {
+            get {
                 return ResourceManager.GetString("SplashScreen", resourceCulture);
             }
         }

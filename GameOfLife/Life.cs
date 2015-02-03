@@ -13,6 +13,8 @@ namespace GameOfLife
     /// </summary>
     internal static class Life
     {
+        #region Public Members
+
         // The matrices used to hold the life data.
         private static byte[,] CurrentGrid;
         private static byte[,] NextGrid;
@@ -29,6 +31,11 @@ namespace GameOfLife
         // A count of the current generation.
         public static int CurrentGeneration = 0;
 
+        #endregion Public Members
+
+        #region Private Members
+
+
         /// <summary>
         /// These fields manage the size of the current grid, they are the true
         /// size of the grid, as used by this class, which means they include
@@ -36,6 +43,10 @@ namespace GameOfLife
         /// </summary>
         private static int Rows;
         private static int Columns;
+
+        #endregion Private Members
+
+        #region Public Interface
 
         /// <summary>
         /// Starts a new game. Flushes any old game data and generates new life
@@ -79,6 +90,10 @@ namespace GameOfLife
         {
             return CurrentGrid[Row + 1, Column + 1];
         }
+
+        #endregion Public Interface
+
+        #region Private Interface
 
         /// <summary>
         /// Creates two new grids for tracking life. Intended for use after
@@ -180,8 +195,10 @@ namespace GameOfLife
                 GameRunning = false;
             }
 
+
             PreviousGrid = CurrentGrid;
             CurrentGrid = NextGrid;
+            
         }
 
         /// <summary>
@@ -279,5 +296,8 @@ namespace GameOfLife
             if (Random.Next(1, 100) <= Setting.LifeChance) return true;
             return false;
         }
+
+        #endregion Private Interface
+
     }
 }
