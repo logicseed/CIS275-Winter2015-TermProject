@@ -325,28 +325,34 @@ namespace GameOfLife
 
             for (int i = 0; i < FontFiles.Length; i++)
             {
+                // Create a string that contains the full address of the font file
                 string FontFile = typeof(Program).Namespace + ".Fonts." + FontFiles[i];
+
+                // Create a stream to the font data stored in the assembly
                 Stream FontStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(FontFile);
 
-                // create an unsafe memory block for the font data
+                // Because PrivateFontCollection.AddMemoryFont requires a pointer
+                // we will marshal some unsafe memory to store our stream and
+                // create a pointer to that memory.
                 System.IntPtr Data = Marshal.AllocCoTaskMem((int)FontStream.Length);
 
-                // create a buffer to read in to
+                // Read the font data into a byte string
                 byte[] FontData = new byte[FontStream.Length];
 
-                // read the font data from the resource
+                // Stream the font data from the assembly
                 FontStream.Read(FontData, 0, (int)FontStream.Length);
 
-                // copy the bytes to the unsafe memory block
+                // Copy the font data we streamed to our unsafe memory block
                 Marshal.Copy(FontData, 0, Data, (int)FontStream.Length);
 
-                // pass the font to the font collection
+                // Add the font now stored in unsafe memory to the private font
+                // collection
                 FontCollection.AddMemoryFont(Data, (int)FontStream.Length);
 
-                // close the resource stream
+                // Close the font data stream
                 FontStream.Close();
 
-                // free up the unsafe memory
+                // Release the unsafe memory block 
                 Marshal.FreeCoTaskMem(Data);
             }
 

@@ -15,11 +15,6 @@ namespace GameOfLife
     {
         #region Public Members
 
-        // The matrices used to hold the life data.
-        private static byte[,] CurrentGrid;
-        private static byte[,] NextGrid;
-        private static byte[,] PreviousGrid;
-
         // Two potential end-game states.
         public static bool Stabilization = false;
         public static bool Extinction = false;
@@ -35,6 +30,10 @@ namespace GameOfLife
 
         #region Private Members
 
+        // The matrices used to hold the life data.
+        private static byte[,] CurrentGrid;
+        private static byte[,] NextGrid;
+        private static byte[,] PreviousGrid;
 
         /// <summary>
         /// These fields manage the size of the current grid, they are the true
