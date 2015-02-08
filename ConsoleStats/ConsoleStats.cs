@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * 
+ * The Game of Life
+ * 
+ * Copyright (C) 2015 Marc King <mjking@umich.edu>
+ * 
+ */
+
+using System;
 
 namespace GameOfLife
 {
