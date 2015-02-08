@@ -20,6 +20,7 @@ namespace GameOfLife
 
         private static System.Random RandomObject = new System.Random();
         private static Object threadLock = new object();
+        //private static int Calls;
 
         #endregion Private Members
 
@@ -33,10 +34,18 @@ namespace GameOfLife
         /// <returns></returns>
         public static int Next(int min, int max)
         {
+            // Random table is getting old, let's refresh it
+            //if (Calls > 1000000) RandomObject = new System.Random();
+            //Calls++;
             lock (threadLock)
             {
                 return RandomObject.Next(min, max + 1);
             }
+        }
+
+        public static void NewSeed()
+        {
+            RandomObject = new System.Random();
         }
 
         #endregion Public Interface
