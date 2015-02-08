@@ -20,18 +20,24 @@ namespace GameOfLife
 
         static void Main(string[] args)
         {
+            // ◄►■║═╔╗╚╝│─┌┐└┘┬┴┼
             Console.Clear();
-            Console.WriteLine("Game of Life Stat Collector");
+            Console.WriteLine("╔═════════════════════════════╗\n" +
+                              "║ Game of Life Stat Collector ║\n" +
+                              "╚═════════════════════════════╝\n");
             while (true)
             {
-                
-                Console.Write("Rows: ");
+
+                Console.WriteLine("┌─────────────────────┐\n" +
+                                  "│ Enter Grid Settings │\n" +
+                                  "└─────────────────────┘\n");
+                Console.Write(" Rows: ");
                 Setting.Rows = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Columns: ");
+                Console.Write(" Columns: ");
                 Setting.Columns = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Life Chance: ");
+                Console.Write(" Life Chance: ");
                 Setting.LifeChance = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Tests: ");
+                Console.Write(" Tests: ");
                 TotalTestsMax = Convert.ToInt32(Console.ReadLine());
                 TotalTests = 1;
                 Console.Clear();
@@ -95,16 +101,19 @@ namespace GameOfLife
 
                 }
 
-                Console.WriteLine("Settings: " + Setting.Rows + "x" + Setting.Columns +
+                Console.WriteLine("┌─────────┐\n" +
+                                  "│ Results │\n" +
+                                  "└─────────┘\n");
+                Console.WriteLine(" Settings: " + Setting.Rows + "x" + Setting.Columns +
                     " @ " + Setting.LifeChance + "%");
                 // Display the outcome counts
-                Console.WriteLine("Extinctions: " + ExtinctionCount);
-                Console.WriteLine("Stabilizations: " + StabilizationCount);
-                Console.WriteLine("Oscillations: " + OscillationCount);
-                Console.WriteLine("Unknowns: " + UnknownCount);
+                Console.WriteLine(" Extinctions: " + ExtinctionCount);
+                Console.WriteLine(" Stabilizations: " + StabilizationCount);
+                Console.WriteLine(" Oscillations: " + OscillationCount);
+                Console.WriteLine(" Unknowns: " + UnknownCount);
 
                 // Exit the program after one last key press
-                Console.Write("\nPress Any Key to Continue");
+                Console.Write("\n Press Any Key to Continue");
                 Console.ReadKey(true);
                 Console.Clear();
                 Random.NewSeed();
@@ -121,30 +130,51 @@ namespace GameOfLife
                 BlocksComplete = 49;
             }
             
+            // Draw Progress Bar
             if(BlocksComplete > BlocksDrawn)
             {
-                Console.SetCursorPosition(BlocksDrawn + 1, 0);
+                Console.SetCursorPosition(BlocksDrawn + 1, 3);
                 for (int i = 0; i < (BlocksComplete - BlocksDrawn); i++)
                 {
                     Console.Write("█");
+                    BlocksDrawn++;
                 }
             }
             
-            // Draw progress
-            Console.SetCursorPosition(52, 0);
-            Console.Write(TotalTests + " / " + TotalTestsMax);
-            Console.SetCursorPosition(0, 1);
+            // Draw Numeric Progress
+            string LeadingZeroFormat = "";
+            for (int i = 0; i < TotalTestsMax.ToString().Length; i++) LeadingZeroFormat += "0";
+            Console.SetCursorPosition(53, 3);
+            Console.Write(TotalTests.ToString(LeadingZeroFormat));
+            Console.SetCursorPosition(0, 6);
+
+
+            
         }
 
         private static void DrawEmptyProgressBar()
         {
-            // Put cursor at origin
+            // Draw header and lines
             Console.SetCursorPosition(0, 0);
+            Console.Write("┌──────────┐\n" +
+                          "│ Progress │\n" +
+                          "├──────────┴───────────────────────────────────────┬");
+            int MaxTestsLength = (int)Math.Ceiling(Math.Log10(TotalTestsMax));
+            for (int i = 0; i <= ((MaxTestsLength * 2) + 6); i++) Console.Write("─");
+            Console.Write("┐\n");
 
             // Draw empty bar
-            Console.Write("|");
-            for (int i = 0; i < 50; i++) Console.Write("▒");
-            Console.Write("|");
+            Console.Write("│");
+            for (int i = 0; i < 50; i++) Console.Write("■");
+            Console.Write("│");
+            for (int i = 0; i <= (MaxTestsLength + 2); i++) Console.Write(" ");
+            Console.Write("/ " + TotalTestsMax + " │\n");
+
+            // Draw bottom line
+            Console.Write("└──────────────────────────────────────────────────┴");
+            for (int i = 0; i <= ((MaxTestsLength * 2) + 6); i++) Console.Write("─");
+            Console.Write("┘\n");
+
         }
 
         private static void CalculateProgressBlockSize()
