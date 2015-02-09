@@ -99,7 +99,13 @@ namespace GameOfLife
                     // Increment the test count
                     TotalTests++;
 
+
                 }
+
+                // Clear progress
+                BlocksComplete = 0;
+                BlockSize = 0;
+                BlocksDrawn = 0;
 
                 Console.WriteLine("┌─────────┐\n" +
                                   "│ Results │\n" +
@@ -123,7 +129,7 @@ namespace GameOfLife
 
         static void DrawProgressBar()
         {
-            BlocksComplete = (int)(BlockSize * TotalTests);
+            BlocksComplete = (int)Math.Ceiling(BlockSize * TotalTests);
 
             if(TotalTests < TotalTestsMax && BlocksComplete == 50)
             {
