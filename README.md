@@ -64,7 +64,7 @@ of those states is reached, the simulation will halt and a popup will display th
 
 [![LargerRun](Screenshots/LargerRun_480.png?raw=true "LargerRun")](Screenshots/LargerRun.png?raw=true)
 
-*When exiting the user is promted for confirmation.*
+*When exiting the user is prompted for confirmation.*
 
 [![ExitPopup](Screenshots/ExitPopup_480.png?raw=true "ExitPopup")](Screenshots/ExitPopup.png?raw=true)
 
